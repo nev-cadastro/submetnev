@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <meta name="description" content="Sistema de Normas de Publicação Acadêmica - NEV/USP. Diretrizes para submissão em revistas de Ciências Sociais.">
+    <title>NEV/USP · Normas de Publicação</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 100%);
+            min-height: 100vh;
+            color: #0f172a;
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+        
+        .card-shadow:hover {
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-btn {
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+        }
+        
+        .filter-btn.active {
+            background-color: #1e40af !important;
+            color: white !important;
+            border-color: #1e3a8a;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease forwards;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 16px 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            border-left: 6px solid;
+            max-width: 400px;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .toast.info { border-left-color: #3b82f6; }
+        .toast.success { border-left-color: #22c55e; }
+        .toast.warning { border-left-color: #f59e0b; }
+        .toast.error { border-left-color: #ef4444; }
+        
+        .logo-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .logo-button:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo-button:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+        
+        /* Modal de Termos */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="app" class="min-h-screen flex flex-col">
+        
+        <!-- HEADER COM LOGO CLICÁVEL (ACESSÍVEL) -->
+        <header class="bg-white/90 backdrop-blur-sm border-b border-slate-200/80 sticky top-0 z-50 py-2 px-4 shadow-sm">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                
+                <!-- LOGO COMO BOTÃO PARA HOME -->
+                <button onclick="window.goToHome()" class="flex items-center gap-3 logo-button" aria-label="Ir para a página inicial">
+                    <!-- LOGO RETANGULAR -->
+                    <img src="imagem/logo_submetnev.png" alt="NEV/USP" 
+                         class="h-14 md:h-16 w-auto object-contain"
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDI0MCA4MCIgZmlsbD0iIzFkNGVkOCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI4MCIgcng9IjgiIGZpbGw9IiMxZTQwYWYiLz48dGV4dCB4PSIyMCIgeT0iNDgiIGZvbnQtZmFtaWx5PSJJbnRlciwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiPk5FVjwvdGV4dD48L3N2Zz4=';">
+                    
+                    <!-- DESCRIÇÃO SUCINTA (DESKTOP) -->
+                    <div class="hidden md:block border-l border-blue-100 pl-3">
+                        <p class="text-[11px] text-blue-400/90 font-light leading-relaxed tracking-wide">
+                            Sistema de apoio ao autor<br>
+                            <span class="text-slate-400">informações e diretrizes para submissão de publicações</span>
+                        </p>
+                    </div>
+                    
+                    <!-- DESCRIÇÃO MOBILE (MAIS COMPACTA) -->
+                    <div class="md:hidden">
+                        <p class="text-[9px] text-blue-400/80 font-light">
+                            Sistema de apoio ao autor
+                        </p>
+                    </div>
+                </button>
+                
+                <!-- BOTÃO NORMAS GERAIS -->
+                <button onclick="window.showGeneralNorms()" 
+                    class="group relative bg-blue-50/80 hover:bg-blue-100 text-blue-600 font-medium px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 border border-blue-200/70 shadow-sm"
+                    aria-label="Visualizar normas gerais de publicação">
+                    <i class="fas fa-info-circle text-xs group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs sm:text-sm">Normas Gerais</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+            
+            <!-- VIEW PRINCIPAL (LISTA) -->
+            <div id="main-view">
+                
+                <!-- FILTROS E BUSCA -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl card-shadow p-6 md:p-7 mb-8 border border-white/50">
+                    
+                    <!-- BARRA DE BUSCA -->
+                    <div class="relative mb-6 group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-blue-400 group-focus-within:text-blue-600 transition-colors"></i>
+                        </div>
+                        <input type="text" id="search-input" 
+                               placeholder="Buscar revista por nome, instituição, foco ou descrição..." 
+                               class="w-full pl-12 pr-5 py-4 rounded-xl border-2 border-slate-200 bg-white/80 focus:bg-white focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition-all text-base shadow-sm"
+                               autocomplete="off"
+                               aria-label="Campo de busca de revistas">
+                        <button id="clear-search" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 hidden" aria-label="Limpar busca">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- FILTROS POR QUALIS (SERÃO PREENCHIDOS DINAMICAMENTE PELO JavaScript) -->
+                    <div class="flex flex-wrap items-center gap-4">
+                        <span class="text-sm font-semibold text-slate-600 flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full">
+                            <i class="fas fa-filter text-blue-600"></i>
+                            Qualis:
+                        </span>
+                        <div id="qualis-filters" class="flex flex-wrap gap-2">
+                            <!-- Botões serão inseridos via JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CABEÇALHO DOS RESULTADOS -->
+                <div class="mb-6 flex flex-wrap justify-between items-center">
+                    <h2 class="text-slate-600 font-medium flex items-center gap-2" id="results-count">
+                        <i class="fas fa-spinner animate-spin text-blue-600"></i>
+                        Carregando...
+                    </h2>
+                    <div class="text-sm text-slate-400 flex items-center gap-1">
+                        <i class="fas fa-arrow-up text-xs"></i>
+                        <span>Clique em "Ver Diretrizes" para detalhes</span>
+                    </div>
+                </div>
+
+                <!-- GRID DE REVISTAS -->
+                <div id="revistas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-7 mb-12">
+                    <!-- Cards serão injetados via JS -->
+                </div>
+            </div>
+
+            <!-- VIEW DE DETALHE -->
+            <div id="detail-view" class="hidden animate-fade-in">
+                <div id="revista-detail-content"></div>
+            </div>
+
+            <!-- VIEW DE NORMAS GERAIS -->
+            <div id="general-norms-view" class="hidden animate-fade-in">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 flex items-center gap-3">
+                        <span class="bg-blue-700 p-2 rounded-xl text-white">
+                            <i class="fas fa-scale-balanced"></i>
+                        </span>
+                        Normas Gerais
+                    </h2>
+                    <button onclick="window.hideGeneralNorms()" 
+                        class="bg-white hover:bg-slate-100 text-slate-700 px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 border border-slate-300 shadow-sm"
+                        aria-label="Voltar à lista de revistas">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar à lista
+                    </button>
+                </div>
+                <div id="general-norms-content" class="grid grid-cols-1 md:grid-cols-2 gap-7">
+                    <!-- Normas serão injetadas via JS -->
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER COM INFORMAÇÕES LEGAIS -->
+        <footer class="mt-auto border-t border-slate-200/80 bg-white/50 backdrop-blur-sm py-6 px-4 text-center">
+            <div class="max-w-7xl mx-auto">
+                <p class="text-slate-400 text-xs md:text-sm flex flex-col md:flex-row items-center justify-center gap-2">
+                    <span>© 2026 · Núcleo de Estudos da Violência · Universidade de São Paulo</span>
+                    <span class="hidden md:inline">|</span>
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-code-branch text-xs"></i>
+                        v3.0.0 · Sistema de Normas Unificado
+                    </span>
+                </p>
+                <p class="text-slate-400 text-xs mt-2 flex items-center justify-center gap-3">
+                    <span>As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista.</span>
+                    <button onclick="window.openTermsModal()" class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md px-1" aria-label="Abrir termos de uso">
+                        Termos de uso
+                    </button>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MODAL DE TERMOS DE USO (OCULTO INICIALMENTE) -->
+    <div id="terms-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content p-6" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="terms-title" class="text-xl font-bold text-slate-800">Termos de Uso</h3>
+                <button onclick="window.closeTermsModal()" class="text-slate-500 hover:text-slate-700 text-2xl leading-none" aria-label="Fechar modal de termos">&times;</button>
+            </div>
+            <div class="space-y-4 text-slate-600 text-sm">
+                <p>
+                    <strong>1. Finalidade acadêmica</strong><br>
+                    Este sistema foi desenvolvido pelo Núcleo de Estudos da Violência da Universidade de São Paulo (NEV/USP) para apoiar pesquisadores na submissão de trabalhos acadêmicos. As informações aqui contidas são organizadas com base em diretrizes públicas das revistas, podendo sofrer alterações sem aviso prévio.
+                </p>
+                <p>
+                    <strong>2. Responsabilidade do usuário</strong><br>
+                    É de responsabilidade do autor verificar as normas atualizadas no site oficial da revista antes da submissão. O NEV/USP não se responsabiliza por eventuais inadequações decorrentes de mudanças nas políticas editoriais.
+                </p>
+                <p>
+                    <strong>3. Direitos autorais dos templates</strong><br>
+                    Os modelos de documentos (.docx) disponibilizados são baseados nas instruções aos autores de cada periódico e podem ser livremente utilizados para fins acadêmicos, desde que respeitadas as políticas de cada revista.
+                </p>
+                <p>
+                    <strong>4. Propriedade intelectual</strong><br>
+                    O código e o design do sistema são de propriedade do NEV/USP, sendo permitida a consulta pública, mas não a reprodução total ou parcial sem autorização.
+                </p>
+                <p>
+                    <strong>5. Contato</strong><br>
+                    Em caso de dúvidas ou sugestões, entre em contato pelo e-mail: <a href="mailto:nev@usp.br" class="text-blue-600 hover:underline">nev@usp.br</a>.
+                </p>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="window.closeTermsModal()" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-xl font-medium transition-all">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAINER PARA TOASTS -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-3"></div>
+
+    <!-- SCRIPT PRINCIPAL -->
+    <script src="script.js"></script>
+    
+    <!-- FUNÇÕES GLOBAIS PARA CONTROLE DO MODAL -->
+    <script>
+        // Funções para o modal de termos (definidas antes do script.js para garantir disponibilidade)
+        window.openTermsModal = function() {
+            const modal = document.getElementById('terms-modal');
+            if (modal) {
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+                // Foco no botão de fechar para acessibilidade
+                setTimeout(() => {
+                    const closeBtn = modal.querySelector('button[aria-label="Fechar modal de termos"]');
+                    if (closeBtn) closeBtn.focus();
+                }, 100);
+            }
+        };
+
+        window.closeTermsModal = function() {
+            const modal = document.getElementById('terms-modal');
+            if (modal) {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+            }
+        };
+
+        // Fechar modal ao clicar fora do conteúdo (opcional)
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('terms-modal');
+            if (modal && modal.classList.contains('show')) {
+                if (event.target === modal) {
+                    window.closeTermsModal();
+                }
+            }
+        });
+
+        // Fechar modal com a tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('terms-modal');
+                if (modal && modal.classList.contains('show')) {
+                    window.closeTermsModal();
+                }
+            }
+        });
+    </script>
+
+    <!-- FUNÇÃO goToHome (já existente, mas mantida para compatibilidade) -->
+    <script>
+        window.goToHome = function() {
+            // Esconde views de detalhe e normas gerais
+            const detailView = document.getElementById('detail-view');
+            const generalNormsView = document.getElementById('general-norms-view');
+            const mainView = document.getElementById('main-view');
+            
+            if (detailView) detailView.classList.add('hidden');
+            if (generalNormsView) generalNormsView.classList.add('hidden');
+            if (mainView) mainView.classList.remove('hidden');
+            
+            // Limpa busca e filtros (via estado global, se disponível)
+            if (window.state) {
+                window.state.searchTerm = '';
+                window.state.filtroQualis = 'Todos';
+                
+                // Atualiza input de busca
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) searchInput.value = '';
+                
+                // Atualiza botões de filtro (o JS dinâmico cuidará disso, mas forçamos a atualização)
+                if (typeof window.updateQualisFilters === 'function') {
+                    window.updateQualisFilters();
+                } else {
+                    // Fallback: remove active de todos e coloca no Todos
+                    document.querySelectorAll('[data-type="qualis"]').forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-700', 'text-white');
+                        btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-300');
+                        if (btn.dataset.value === 'Todos') {
+                            btn.classList.remove('bg-white', 'border', 'border-slate-300');
+                            btn.classList.add('active', 'bg-blue-700', 'text-white');
+                        }
+                    });
+                }
+                
+                // Re-renderiza
+                if (typeof window.renderMainView === 'function') {
+                    window.renderMainView();
+                    if (typeof window.updateResultsCount === 'function') {
+                        window.updateResultsCount();
+                    }
+                }
+            }
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            console.log('🏠 Voltar à home');
+        };
+    </script>
+</body>
+</html>
