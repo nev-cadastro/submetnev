@@ -1,252 +1,326 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-<meta name="description" content="SubmetNEV - NEV/USP. Diretrizes para submissão em revistas de Ciências Sociais.">
-<title>NEV/USP · Normas de Publicação</title>
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" href="imagem/icone_submetnev.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <meta name="description" content="SibmetNEV - NEV/USP. Diretrizes para submissão em revistas de Ciências Sociais.">
+    <title>NEV/USP · Normas de Publicação</title>
+    <link rel="manifest" href="manifest.json">
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon do sistema -->
+    <link rel="icon" type="image/png" href="imagem/icone_submetnev.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-principal: #0B3D91;
+            --azul-secundario: #1E5BB8;
+            --azul-claro: #EAF2FF;
+            --dourado: #C6A756;
+            --cinza-fundo: #F3F4F6;
+            --cinza-claro: #E5E7EB;
+            --cinza-medio: #6B7280;
+            --cinza-escuro: #1F2937;
+        }
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--cinza-fundo) 0%, #E9EDF3 100%);
+            min-height: 100vh;
+            color: var(--cinza-escuro);
+            font-size: 16px;
+            line-height: 1.6;
+        }
 
-<!-- Roboto -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+        /* HEADER INSTITUCIONAL */
+        header {
+            background: linear-gradient(90deg, var(--azul-principal), var(--azul-secundario));
+            border-bottom: 3px solid var(--dourado);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
 
-<style>
-:root{
---azul-principal:#0B3D91;
---azul-secundario:#1E5BB8;
---azul-claro:#EAF2FF;
---dourado:#C6A756;
---cinza-fundo:#F3F4F6;
---cinza-claro:#E5E7EB;
---cinza-medio:#6B7280;
---cinza-escuro:#1F2937;
-}
+        /* Cards */
+        .card-shadow {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--cinza-claro);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: all 0.25s ease;
+        }
+        
+        .card-shadow:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+        /* Busca */
+        #search-input {
+            font-size: 17px;
+            border-radius: 14px;
+            border: 2px solid var(--cinza-claro);
+        }
 
-body{
-font-family:'Roboto',sans-serif;
-background:linear-gradient(135deg,var(--cinza-fundo),#E9EDF3);
-color:var(--cinza-escuro);
-min-height:100vh;
-font-size:16px;
-line-height:1.6;
-}
+        #search-input:focus {
+            border-color: var(--azul-secundario);
+            box-shadow: 0 0 0 4px rgba(30,91,184,0.15);
+        }
 
-/* HEADER */
-header{
-background:linear-gradient(90deg,var(--azul-principal),var(--azul-secundario));
-border-bottom:3px solid var(--dourado);
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
-}
+        /* Botões */
+        button {
+            font-family: 'Roboto', sans-serif;
+        }
 
-header p{color:#ffffffcc !important;}
+        .filter-btn.active {
+            background-color: var(--azul-principal) !important;
+            color: white !important;
+            border-color: var(--azul-secundario);
+            font-weight: 600;
+        }
 
-/* CARDS */
-.card-shadow{
-background:#fff;
-border-radius:20px;
-border:1px solid var(--cinza-claro);
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-transition:all .25s ease;
-}
-.card-shadow:hover{
-transform:translateY(-4px);
-box-shadow:0 18px 35px rgba(0,0,0,0.10);
-}
+        /* Tipografia */
+        h1, h2, h3 {
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: -0.3px;
+        }
 
-/* INPUT BUSCA */
-#search-input{
-font-size:17px;
-border-radius:14px;
-border:2px solid var(--cinza-claro);
-}
-#search-input:focus{
-border-color:var(--azul-secundario);
-box-shadow:0 0 0 4px rgba(30,91,184,0.15);
-}
+        h2 { font-size: 28px; font-weight: 800; }
+        h3 { font-size: 20px; font-weight: 700; }
 
-/* BOTÕES */
-button{font-family:'Roboto',sans-serif;}
+        .text-xs { font-size: 13px !important; }
+        .text-sm { font-size: 15px !important; }
+        .text-base { font-size: 17px !important; }
 
-button.bg-blue-700,
-button.bg-blue-800{
-background:var(--azul-principal)!important;
-}
-button.bg-blue-700:hover,
-button.bg-blue-800:hover{
-background:var(--azul-secundario)!important;
-}
+        /* Modal */
+        .modal-content {
+            border-radius: 20px;
+            border-top: 5px solid var(--azul-principal);
+        }
 
-.bg-amber-700{
-background:var(--dourado)!important;
-}
-.bg-amber-700:hover{
-filter:brightness(1.08);
-}
+        /* Footer */
+        footer {
+            border-top: 2px solid var(--dourado);
+            background: #ECEFF4;
+        }
 
-/* FILTROS */
-.filter-btn.active{
-background:var(--azul-principal)!important;
-border-color:var(--azul-secundario);
-font-weight:600;
-}
+        /* Tooltip */
+        .tooltip-text {
+            background-color: var(--azul-principal);
+        }
 
-/* TÍTULOS */
-h1,h2,h3{
-font-family:'Roboto',sans-serif;
-letter-spacing:-.3px;
-}
-h2{font-size:28px;font-weight:800;}
-h3{font-size:20px;font-weight:700;}
-
-/* MODAL */
-.modal-overlay{
-position:fixed;inset:0;
-background:rgba(0,0,0,.55);
-display:flex;align-items:center;justify-content:center;
-z-index:10000;
-opacity:0;visibility:hidden;
-transition:.3s;
-}
-.modal-overlay.show{opacity:1;visibility:visible;}
-.modal-content{
-background:#fff;
-border-radius:20px;
-border-top:5px solid var(--azul-principal);
-max-width:520px;width:92%;
-max-height:80vh;overflow-y:auto;
-box-shadow:0 30px 60px rgba(0,0,0,0.25);
-}
-
-/* FOOTER */
-footer{
-background:#ECEFF4;
-border-top:2px solid var(--dourado);
-font-size:14px;
-}
-
-/* TOAST */
-.toast{
-border-left:8px solid var(--azul-principal);
-}
-
-/* TOOLTIP */
-.tooltip-text{
-background:var(--azul-principal);
-}
-
-/* Ajustes tipográficos */
-.text-xs{font-size:13px!important;}
-.text-sm{font-size:15px!important;}
-.text-base{font-size:17px!important;}
-</style>
+    </style>
 </head>
-
 <body class="antialiased">
+    <div id="app" class="min-h-screen flex flex-col">
+        
+        <!-- HEADER COM LOGO CLICÁVEL + BOTÕES DE APOIO -->
+        <header class="bg-white/90 backdrop-blur-sm border-b border-slate-200/80 sticky top-0 z-50 py-2 px-4 shadow-sm">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                
+                <!-- LOGO COMO BOTÃO PARA HOME -->
+                <button onclick="window.goToHome()" class="flex items-center gap-3 logo-button" aria-label="Ir para a página inicial">
+                    <img src="imagem/logo_submetnev.png" alt="NEV/USP" 
+                         class="h-24 md:h-36 w-auto object-contain"
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDI0MCA4MCIgZmlsbD0iIzFkNGVkOCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI4MCIgcng9IjgiIGZpbGw9IiMxZTQwYWYiLz48dGV4dCB4PSIyMCIgeT0iNDgiIGZvbnQtZmFtaWx5PSJSb2JvdG8sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIj5ORVY8L3RleHQ+PC9zdmc+';">
+                    
+                    <!-- DESCRIÇÃO SUCINTA (DESKTOP) -->
+                    <div class="hidden md:block border-l border-blue-100 pl-3">
+                        <p class="text-[11px] text-blue-400/90 font-light leading-relaxed tracking-wide">
+                            Sistema de apoio ao autor<br>
+                            <span class="text-slate-400">informações e diretrizes para submissão de publicações</span>
+                        </p>
+                    </div>
+                    
+                    <!-- DESCRIÇÃO MOBILE -->
+                    <div class="md:hidden">
+                        <p class="text-[9px] text-blue-400/80 font-light">
+                            Sistema de apoio ao autor
+                        </p>
+                    </div>
+                </button>
+                
+                <!-- BOTÕES DE APOIO -->
+                <div class="flex gap-2">
+                    <button onclick="window.showGeneralNorms()" 
+                        class="group relative bg-blue-50/80 hover:bg-blue-100 text-blue-600 font-medium px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 border border-blue-200/70 shadow-sm"
+                        aria-label="Visualizar normas gerais de publicação">
+                        <i class="fas fa-info-circle text-xs group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs sm:text-sm">Padrão Normativo Genérico</span>
+                    </button>
+                    <button onclick="window.showGuideView()" 
+                        class="group relative bg-amber-50/80 hover:bg-amber-100 text-amber-700 font-medium px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-2 border border-amber-200/70 shadow-sm"
+                        aria-label="Visualizar guias de redação acadêmica">
+                        <i class="fas fa-compass text-xs group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs sm:text-sm">Guias de Redação</span>
+                    </button>
+                </div>
+            </div>
+        </header>
 
-<div id="app" class="min-h-screen flex flex-col">
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+            
+            <!-- VIEW PRINCIPAL -->
+            <div id="main-view">
+                
+                <!-- FILTROS E BUSCA -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl card-shadow p-6 md:p-7 mb-8 border border-white/50">
+                    
+                    <!-- BARRA DE BUSCA -->
+                    <div class="relative mb-6 group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-blue-400 group-focus-within:text-blue-600 transition-colors"></i>
+                        </div>
+                        <input type="text" id="search-input" 
+                               placeholder="Buscar revista por nome, instituição, foco ou descrição..." 
+                               class="w-full pl-12 pr-5 py-4 rounded-xl border-2 border-slate-200 bg-white/80 focus:bg-white focus:ring-4 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition-all text-base shadow-sm"
+                               autocomplete="off"
+                               aria-label="Campo de busca de revistas">
+                        <button id="clear-search" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 hidden" aria-label="Limpar busca">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- FILTROS POR QUALIS -->
+                    <div class="flex flex-wrap items-center gap-4">
+                        <span class="text-sm font-semibold text-slate-600 flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full">
+                            <i class="fas fa-filter text-blue-600"></i>
+                            Qualis:
+                        </span>
+                        <div id="qualis-filters" class="flex flex-wrap gap-2">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CABEÇALHO DOS RESULTADOS -->
+                <div class="mb-6 flex flex-wrap justify-between items-center">
+                    <h2 class="text-slate-600 font-medium flex items-center gap-2" id="results-count">
+                        <i class="fas fa-spinner animate-spin text-blue-600"></i>
+                        Carregando...
+                    </h2>
+                    <div class="text-sm text-slate-400 flex items-center gap-1">
+                        <i class="fas fa-arrow-up text-xs"></i>
+                        <span>Clique em "Ver mais" para detalhes</span>
+                    </div>
+                </div>
 
-<header class="sticky top-0 z-50 py-3 px-6">
-<div class="max-w-7xl mx-auto flex items-center justify-between">
+                <!-- GRID DE REVISTAS -->
+                <div id="revistas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-7 mb-12">
+                </div>
+            </div>
 
-<button onclick="window.goToHome()" class="flex items-center gap-4">
-<img src="imagem/logo_submetnev.png" class="h-24 md:h-32 w-auto object-contain">
-<div class="hidden md:block border-l border-white/30 pl-4">
-<p class="text-sm font-light">
-Sistema de apoio ao autor<br>
-<span class="text-blue-100 text-xs">informações e diretrizes para submissão</span>
-</p>
-</div>
-</button>
+            <!-- VIEW DE DETALHE -->
+            <div id="detail-view" class="hidden animate-fade-in">
+                <div id="revista-detail-content"></div>
+            </div>
 
-<div class="flex gap-3">
-<button onclick="window.showGeneralNorms()" class="bg-white text-blue-900 px-4 py-2 rounded-xl shadow-md font-medium">
-<i class="fas fa-scale-balanced mr-2"></i>Padrão Normativo
-</button>
-<button onclick="window.showGuideView()" class="bg-amber-700 text-white px-4 py-2 rounded-xl shadow-md font-medium">
-<i class="fas fa-compass mr-2"></i>Guias
-</button>
-</div>
+            <!-- VIEW DE NORMAS GERAIS -->
+            <div id="general-norms-view" class="hidden animate-fade-in">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 flex items-center gap-3">
+                        <span class="bg-blue-700 p-2 rounded-xl text-white">
+                            <i class="fas fa-scale-balanced"></i>
+                        </span>
+                        Padrão Normativo Genérico
+                    </h2>
+                    <button onclick="window.hideGeneralNorms()" 
+                        class="bg-white hover:bg-slate-100 text-slate-700 px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 border border-slate-300 shadow-sm">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar à lista
+                    </button>
+                </div>
+                <div id="general-norms-content" class="grid grid-cols-1 md:grid-cols-2 gap-7">
+                </div>
+            </div>
 
-</div>
-</header>
+            <!-- VIEW DE GUIAS -->
+            <div id="guide-view" class="hidden animate-fade-in">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 flex items-center gap-3">
+                        <span class="bg-amber-700 p-2 rounded-xl text-white">
+                            <i class="fas fa-compass"></i>
+                        </span>
+                        Guias de Redação Acadêmica
+                    </h2>
+                    <button onclick="window.hideGuideView()" 
+                        class="bg-white hover:bg-slate-100 text-slate-700 px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 border border-slate-300 shadow-sm">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar à lista
+                    </button>
+                </div>
+                <div id="guide-content" class="space-y-8">
+                </div>
+            </div>
+        </main>
 
-<main class="flex-1 max-w-7xl mx-auto px-6 py-10">
+        <!-- FOOTER -->
+        <footer class="mt-auto border-t border-slate-200/80 bg-white/50 backdrop-blur-sm py-6 px-4 text-center">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <img src="imagem/icone_submetnev.png" alt="Ícone do Sistema" class="h-6 w-auto opacity-50">
+                    <p class="text-slate-400 text-xs md:text-sm flex flex-col md:flex-row items-center justify-center gap-2">
+                        <span>© 2026 · Núcleo de Estudos da Violência · Universidade de São Paulo</span>
+                        <span class="hidden md:inline">|</span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-code-branch text-xs"></i>
+                            SubmetNEV
+                        </span>
+                    </p>
+                </div>
+                <p class="text-slate-400 text-xs mt-2 flex items-center justify-center gap-3">
+                    <span>As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista.</span>
+                    <button onclick="window.openTermsModal()" class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md px-1">
+                        Termos de uso
+                    </button>
+                </p>
+            </div>
+        </footer>
+    </div>
 
-<div id="main-view">
+    <!-- MODAL -->
+    <div id="terms-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-slate-800">Termos de Uso</h3>
+                <button onclick="window.closeTermsModal()" class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+            </div>
+            <div class="space-y-4 text-slate-600 text-sm">
+                <p><strong>1. Finalidade acadêmica</strong><br>
+                Sistema desenvolvido para apoiar pesquisadores na submissão de trabalhos acadêmicos.</p>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="window.closeTermsModal()" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-xl font-medium">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
 
-<div class="card-shadow p-8 mb-10">
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-3"></div>
 
-<div class="relative mb-8">
-<i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-blue-500"></i>
-<input type="text" id="search-input"
-placeholder="Buscar revista por nome, instituição ou descrição..."
-class="w-full pl-12 pr-4 py-4 bg-white outline-none">
-</div>
+    <script src="script.js"></script>
 
-<div class="flex flex-wrap items-center gap-4">
-<span class="text-sm font-semibold text-gray-600 flex items-center gap-2">
-<i class="fas fa-filter text-blue-700"></i>Qualis:
-</span>
-<div id="qualis-filters" class="flex flex-wrap gap-2"></div>
-</div>
-
-</div>
-
-<div id="revistas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-
-</div>
-
-</main>
-
-<footer class="py-6 text-center">
-<p class="text-gray-600">
-© 2026 · Núcleo de Estudos da Violência · Universidade de São Paulo
-</p>
-<p class="text-gray-500 text-sm mt-2">
-As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista.
-<button onclick="window.openTermsModal()" class="text-blue-700 underline ml-2">Termos de uso</button>
-</p>
-</footer>
-
-</div>
-
-<!-- MODAL -->
-<div id="terms-modal" class="modal-overlay">
-<div class="modal-content p-6">
-<div class="flex justify-between items-center mb-4">
-<h3 class="text-xl font-bold">Termos de Uso</h3>
-<button onclick="window.closeTermsModal()" class="text-2xl">&times;</button>
-</div>
-<p class="text-sm text-gray-600">
-Sistema desenvolvido para apoio acadêmico. Sempre verifique as normas oficiais da revista antes da submissão.
-</p>
-<div class="mt-6 text-right">
-<button onclick="window.closeTermsModal()" class="bg-blue-700 text-white px-6 py-2 rounded-xl">
-Fechar
-</button>
-</div>
-</div>
-</div>
-
-<script src="script.js"></script>
-
-<script>
-window.openTermsModal=function(){
-document.getElementById('terms-modal').classList.add('show');
-}
-window.closeTermsModal=function(){
-document.getElementById('terms-modal').classList.remove('show');
-}
-</script>
+    <script>
+        window.openTermsModal = function() {
+            const modal = document.getElementById('terms-modal');
+            if (modal) modal.classList.add('show');
+        };
+        window.closeTermsModal = function() {
+            const modal = document.getElementById('terms-modal');
+            if (modal) modal.classList.remove('show');
+        };
+    </script>
 
 </body>
 </html>
+
+
