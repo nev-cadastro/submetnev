@@ -1,0 +1,495 @@
+{
+  "revistas": [
+    {
+      "id": 1,
+      "nome": "Revista Brasileira de Ciências Sociais (RBCS)",
+      "instituicao": "ANPOCS",
+      "qualis": "A1",
+      "issn": "0102-6909",
+      "foco": "Ciências Sociais (Antropologia, Ciência Política, Sociologia)",
+      "descricao": "Periódico da Associação Nacional de Pós-Graduação e Pesquisa em Ciências Sociais (ANPOCS). Publica artigos inéditos e ensaios críticos. Submissões em fluxo contínuo.",
+      "avaliacao": "Duplo-cega",
+      "avaliacao_preprint": "Duplo-cega",
+      "taxa": "Gratuita (sem APC)",
+      "periodicidade": "Publicação contínua (submissões em fluxo contínuo)",
+      "preprint": "Permitido (SciELO Preprints e outros servidores aprovados)",
+      "licenca": "CC BY",
+      "links": {
+        "site": "https://anpocs.org.br/rbcs/",
+        "submissao": "https://submission.scielo.br/index.php/rbcsoc/login",
+        "diretrizes": "https://anpocs.org.br/normas-para-publicacao-na-revista-brasileira-de-ciencias-sociais/"
+      },
+      "limites": {
+        "artigo_palavras": "7.000 a 9.000",
+        "ensaio_palavras": "Até 3.000",
+        "resumo": "Até 200 palavras",
+        "palavras_chave": 5
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigo científico",
+          "extensao": "7.000 a 9.000 palavras",
+          "detalhes": "Pesquisa original e inédita. Deve conter problema explícito, argumento central, metodologia clara e contribuição substantiva.",
+          "template": "templates/RBCS_ANPOCS_Artigo_Cientifico.docx"
+        },
+        {
+          "tipo": "Ensaio crítico",
+          "extensao": "Até 3.000 palavras",
+          "detalhes": "Geralmente encomendado pela Comissão Editorial, mas passível de avaliação. Análise de livro recente (últimos 24 meses) + mínimo 2 referências adicionais (podem incluir materiais não bibliográficos).",
+          "template": "templates/RBCS_ANPOCS_Ensaio_Critico.docx"
+        }
+      ],
+      "checklist": [
+        "Texto inédito (inclui preprint e anais, com devida declaração)",
+        "Arquivo principal ANÔNIMO (sem identificação de autores, afiliações, ORCID ou agradecimentos)",
+        "Resumo até 200 palavras (estruturado: problema, argumento, contribuição, metodologia)",
+        "5 palavras-chave separadas por ponto e vírgula (de escolha estratégica)",
+        "Título, resumo e palavras-chave em português E inglês",
+        "ORCID obrigatório para todos os autores (inserido nos metadados da submissão)",
+        "Carta de apresentação (obrigatória para preprint – com link – e para coautoria – com especificação CRediT). Deve conter declarações de originalidade, conflito de interesses, financiamento e agradecimentos, preservando o anonimato do arquivo principal.",
+        "Formatação: Times New Roman 12, espaçamento 1,5, margens 2,5 cm, citações no formato autor-data (ABNT NBR 10520)",
+        "Referências em ordem alfabética com nomes COMPLETOS dos autores (ABNT NBR 6023)",
+        "Número do protocolo de aprovação do Comitê de Ética em Pesquisa (CAAE) para pesquisas com seres humanos"
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "DADOS – Revista de Ciências Sociais",
+      "instituicao": "IESP-UERJ",
+      "qualis": "A1",
+      "issn": "0011-5258",
+      "foco": "Ciências Sociais, Política, Análise Empírica",
+      "descricao": "Publicação contínua de pesquisa original com rigor científico e análise empírica sistemática. Ênfase em inovação teórica e metodológica.",
+      "avaliacao": "Duplo-cega",
+      "taxa": "Gratuita",
+      "periodicidade": "Fluxo contínuo",
+      "preprint": "Permitido",
+      "licenca": "CC BY",
+      "links": {
+        "site": "https://www.scielo.br/j/dados",
+        "submissao": "https://mc04.manuscriptcentral.com/dados-scielo"
+      },
+      "limites": {
+        "caracteres": "Até 60.000",
+        "palavras": "Até 10.000",
+        "resumo": "150 palavras"
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigo",
+          "extensao": "Até 60.000 caracteres",
+          "detalhes": "Forte exigência metodológica e analítica. Contribuição original ao campo."
+        },
+        {
+          "tipo": "Ensaio",
+          "extensao": "Até 50.000 caracteres",
+          "detalhes": "Discussão teórica aprofundada com revisão crítica da literatura."
+        },
+        {
+          "tipo": "Resenha",
+          "extensao": "Até 10.000 caracteres",
+          "detalhes": "Obra recente (últimos 3 anos)."
+        }
+      ],
+      "checklist": [
+        "Ineditismo obrigatório",
+        "Arquivo sem identificação",
+        "Resumo e Abstract (150 palavras)",
+        "3 a 5 palavras-chave e keywords",
+        "ORCID obrigatório"
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Tempo Social – Revista de Sociologia",
+      "instituicao": "USP",
+      "qualis": "A1",
+      "issn": "0103-2070",
+      "foco": "Sociologia Geral, Teoria Sociológica, Pesquisa Empírica",
+      "descricao": "Revista de sociologia da USP focada em pesquisa teórica e empírica. Publicação em fluxo contínuo.",
+      "avaliacao": "Duplo-cega",
+      "taxa": "Gratuita",
+      "periodicidade": "Fluxo contínuo",
+      "preprint": "Permitido",
+      "licenca": "CC BY-NC",
+      "links": {
+        "site": "https://www.scielo.br/j/ts",
+        "submissao": "https://www.revistas.usp.br/ts/about/submissions"
+      },
+      "limites": {
+        "caracteres": "Até 70.000",
+        "palavras": "Até 12.750",
+        "resumo": "150 palavras"
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigo",
+          "extensao": "Até 70.000 caracteres",
+          "detalhes": "Estrutura acadêmica clássica. Contribuição original à sociologia."
+        },
+        {
+          "tipo": "Ensaio",
+          "extensao": "Até 60.000 caracteres",
+          "detalhes": "Discussão teórica ou interpretativa."
+        },
+        {
+          "tipo": "Resenha",
+          "extensao": "Até 12.000 caracteres",
+          "detalhes": "Análise crítica de obra recente (últimos 2 anos)."
+        }
+      ],
+      "checklist": [
+        "Submissão via sistema USP",
+        "Arquivo sem identificação",
+        "Resumo e Abstract obrigatórios",
+        "3 a 5 palavras-chave",
+        "ORCID obrigatório",
+        "Máximo 5 autores"
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Sociologias",
+      "instituicao": "UFRGS",
+      "qualis": "A2",
+      "issn": "1517-4522",
+      "foco": "Sociologia Contemporânea, Teoria Social",
+      "descricao": "Revista do PPG em Sociologia da UFRGS. Publica artigos, dossiês e resenhas. Adota avaliação triple-blind.",
+      "avaliacao": "Triple-blind",
+      "taxa": "Gratuita",
+      "periodicidade": "Fluxo contínuo",
+      "preprint": "Não especificado",
+      "licenca": "CC BY-NC-ND",
+      "links": {
+        "site": "https://www.scielo.br/j/soc",
+        "submissao": "https://seer.ufrgs.br/sociologias/about/submissions"
+      },
+      "limites": {
+        "caracteres": "Até 70.000",
+        "palavras": "Até 12.000",
+        "resumo": "200 palavras"
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigos",
+          "extensao": "Até 70.000 caracteres",
+          "detalhes": "Ênfase em sociologia contemporânea."
+        },
+        {
+          "tipo": "Dossiês",
+          "extensao": "Até 70.000 caracteres",
+          "detalhes": "Conforme chamada específica."
+        },
+        {
+          "tipo": "Resenhas",
+          "extensao": "Até 15.000 caracteres",
+          "detalhes": "Obras publicadas nos últimos 2 anos."
+        }
+      ],
+      "checklist": [
+        "Idiomas: PT, EN, ES, FR, IT",
+        "Avaliação triple-blind",
+        "Resumo bilíngue obrigatório",
+        "ORCID obrigatório"
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Revista Brasileira de Sociologia (RBS)",
+      "instituicao": "Sociedade Brasileira de Sociologia (SBS)",
+      "qualis": "A3",
+      "issn": "2318-0544",
+      "issn_print": "2317-8507",
+      "foco": "Sociologia, Teoria Sociológica, Pesquisa Social, Pensamento Social Brasileiro",
+      "descricao": "Revista oficial da Sociedade Brasileira de Sociologia. Lançada em 2013, adota desde 2024 o sistema de publicação em fluxo contínuo em volume único anual. Publica pesquisas originais e inéditas que apresentem reflexões teóricas originais e/ou resultados de pesquisa empírica sobre temas relevantes para a sociologia contemporânea. Acesso aberto, sem taxas, seguindo as diretrizes COPE, CNPq e FAPESP.",
+      "avaliacao": "Duplo-cega",
+      "avaliacao_preprint": "Duplo-cega (mantido mesmo para preprints)",
+      "taxa": "Gratuita (sem APC)",
+      "periodicidade": "Quadrimestral (2017-2023) / Fluxo contínuo em volume único anual (2024-)",
+      "preprint": "PERMITIDO",
+      "preprint_politica": "A revista aceita publicar manuscritos disponibilizados em servidores de preprints (SciELO Preprints, SocArXiv, etc.), em consonância com os parâmetros da ciência aberta.",
+      "posprint": "Permitido (imediatamente após publicação)",
+      "selo": "Verde (permite preprint e pós-print)",
+      "licenca": "CC BY (Creative Commons Atribuição 4.0 Internacional)",
+      "etica": "COPE, CNPq, FAPESP",
+      "antiplagio": "CopySpider (detecção de similaridade obrigatória na 1ª etapa)",
+      "links": {
+        "site": "https://rbs.sbsociologia.com.br",
+        "submissao": "https://rbs.sbsociologia.com.br/index.php/rbs/about/submissions",
+        "diretrizes": "https://rbs.sbsociologia.com.br/index.php/rbs/about",
+        "indexadores": "Latindex, Dialnet, DOAJ, Diadorim, HAPI, Redalyc, Miguilim"
+      },
+      "limites": {
+        "caracteres": "Até 50.000 (recomendado)",
+        "palavras": "Até 8.500 (recomendado)",
+        "resumo": "150-250 palavras",
+        "palavras_chave": "3 a 5"
+      },
+      "secoes": [
+        "Artigos (fluxo contínuo)",
+        "Dossiês (seleção em fluxo contínuo)",
+        "Sociologies in Dialogue",
+        "Futuros Passados",
+        "Programas de pesquisa em sociologia",
+        "Traduções"
+      ],
+      "tipos_texto": [
+        {
+          "tipo": "Artigo original",
+          "extensao": "Até 50.000 caracteres (recomendado)",
+          "detalhes": "Pesquisa original e inédita. Deve apresentar reflexões teóricas originais e/ou resultados de pesquisa empírica sobre temas relevantes para a sociologia contemporânea. Natureza acadêmica e didática.",
+          "template": "templates/RBS_Artigo_Cientifico.docx"
+        },
+        {
+          "tipo": "Ensaio teórico",
+          "extensao": "Até 50.000 caracteres (recomendado)",
+          "detalhes": "Ênfase em elaboração conceitual, revisão crítica da literatura e proposição original. Pode ser submetido nas seções 'Artigos' ou 'Futuros Passados'.",
+          "template": "templates/RBS_Ensaio_Teorico.docx"
+        },
+        {
+          "tipo": "Resenha",
+          "extensao": "Até 10.000 caracteres",
+          "detalhes": "Análise crítica de obra publicada nos últimos 2 anos. Deve apresentar contribuição original do resenhista.",
+          "template": "templates/RBS_Resenha.docx"
+        },
+        {
+          "tipo": "Dossiê",
+          "extensao": "Até 50.000 caracteres (recomendado)",
+          "detalhes": "Submissão em fluxo contínuo para chamadas vigentes. Critérios: (1) relevância da temática, (2) liderança acadêmica dos proponentes, (3) interesse para internacionalização do debate sociológico.",
+          "template": "templates/RBS_Artigo_Dossie.docx"
+        },
+        {
+          "tipo": "Sociologies in Dialogue",
+          "extensao": "Até 50.000 caracteres",
+          "detalhes": "Seção internacional. Textos resultantes de investigação empírica sobre temas fundamentais da sociologia ou contribuições ao debate atual sobre teoria social. Promove diálogos transnacionais.",
+          "template": null
+        },
+        {
+          "tipo": "Futuros Passados",
+          "extensao": "Variável",
+          "detalhes": "Contribuições clássicas, contemporâneas e sobre temas emergentes. Artigos, ensaios, conferências, entrevistas que ensejem entendimento da história, tendências e futuros da Sociologia brasileira e mundial.",
+          "template": null
+        },
+        {
+          "tipo": "Programas de pesquisa em sociologia",
+          "extensao": "Até 50.000 caracteres",
+          "detalhes": "Definição das linhas gerais que delimitam a construção de objetos e o encaminhamento de problemas de pesquisa. Dimensões de análise, metodologias e linhas interpretativas que compõem o cerne de uma área da disciplina.",
+          "template": null
+        },
+        {
+          "tipo": "Tradução",
+          "extensao": "Até 70.000 caracteres",
+          "detalhes": "Tradução de artigo inédito em português. Exigida autorização do original e nota introdutória do tradutor.",
+          "template": null
+        }
+      ],
+      "checklist": [
+        "✅ Texto inédito (não submetido simultaneamente a outro periódico)",
+        "✅ Arquivo completamente anônimo (sem identificação de autores, afiliações, ORCID ou agradecimentos)",
+        "✅ Resumo e Abstract (150-250 palavras)",
+        "✅ 3 a 5 palavras-chave e keywords",
+        "✅ Citações no formato autor-data (ABNT NBR 10520)",
+        "✅ Referências completas em ordem alfabética (ABNT NBR 6023) com nomes COMPLETOS dos autores",
+        "✅ ORCID obrigatório para todos os autores (metadados)",
+        "✅ Declaração de conflito de interesses",
+        "✅ Declaração de contribuição dos autores (taxonomia CRediT) para coautorias",
+        "✅ Número CAAE informado na metodologia (para pesquisas com seres humanos)",
+        "✅ Passou pelo sistema de detecção de similaridade (CopySpider)",
+        "✅ Licença CC BY automaticamente atribuída",
+        "⚠️ REVISÃO: Em caso de aprovação com revisões, todas as alterações devem ser marcadas e justificadas em carta aos editores."
+      ]
+    },
+    {
+      "id": 6,
+      "nome": "Revista Brasileira de Segurança Pública (RBSP)",
+      "instituicao": "Fórum Brasileiro de Segurança Pública (FBSP)",
+      "qualis": "A2",
+      "foco": "Segurança Pública, Violência, Políticas Públicas",
+      "descricao": "Revista focada em violência, crime e políticas de segurança pública. Ênfase em pesquisa aplicada e avaliação de políticas.",
+      "avaliacao": "Duplo-cega",
+      "taxa": "Gratuita",
+      "periodicidade": "Semestral",
+      "links": {
+        "site": "https://revista.forumseguranca.org.br",
+        "submissao": "https://revista.forumseguranca.org.br/index.php/rbsp/about/submissions"
+      },
+      "limites": {
+        "caracteres": "35.000 a 50.000",
+        "palavras": "7.000 a 10.000",
+        "resumo": "250 palavras"
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigo científico",
+          "extensao": "7.000 a 10.000 palavras",
+          "detalhes": "Metodologia explicitada, contribuição empírica original."
+        },
+        {
+          "tipo": "Artigo técnico",
+          "extensao": "5.000 a 8.000 palavras",
+          "detalhes": "Avaliação de políticas públicas, programas ou intervenções."
+        },
+        {
+          "tipo": "Nota de pesquisa",
+          "extensao": "Até 3.000 palavras",
+          "detalhes": "Resultados preliminares, pesquisas em andamento."
+        },
+        {
+          "tipo": "Resenha",
+          "extensao": "Até 2.500 palavras",
+          "detalhes": "Obras recentes sobre segurança pública, violência e políticas públicas."
+        }
+      ],
+      "checklist": [
+        "Foco em segurança pública, violência ou políticas correlatas",
+        "Metodologia clara e reprodutível",
+        "Idiomas: PT, EN, ES",
+        "Resumo e Abstract",
+        "ORCID obrigatório"
+      ]
+    },
+    {
+      "id": 7,
+      "nome": "Dilemas - Revista de Estudos de Conflito e Controle Social",
+      "instituicao": "UFRJ (Necvu/IFCS/PPGSA)",
+      "qualis": "A2",
+      "issn": "1983-5922",
+      "foco": "Sociologia da Violência, Conflitos Urbanos, Justiça Criminal",
+      "descricao": "Revista do Núcleo de Estudos da Cidadania, Conflito e Violência Urbana da UFRJ. Publica em fluxo contínuo contribuições sobre conflito, violência, controle social, justiça criminal e segurança pública.",
+      "avaliacao": "Duplo-cega",
+      "taxa": "Gratuita",
+      "periodicidade": "Quadrimestral / Fluxo contínuo",
+      "links": {
+        "site": "https://revistas.ufrj.br/index.php/dilemas",
+        "submissao": "https://revistas.ufrj.br/index.php/dilemas/about/submissions"
+      },
+      "limites": {
+        "caracteres": "Até 70.000",
+        "palavras": "Até 12.000",
+        "resumo": "150 palavras"
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigo",
+          "extensao": "Até 70.000 caracteres",
+          "detalhes": "Pesquisa original em conflito, violência, controle social, justiça criminal. Preferencialmente com base empírica."
+        },
+        {
+          "tipo": "Ensaio",
+          "extensao": "Até 60.000 caracteres",
+          "detalhes": "Discussão teórica aprofundada."
+        },
+        {
+          "tipo": "Resenha",
+          "extensao": "Até 10.000 caracteres",
+          "detalhes": "Obras recentes (últimos 3 anos)."
+        },
+        {
+          "tipo": "Entrevista",
+          "extensao": "Até 50.000 caracteres",
+          "detalhes": "Com apresentação e contextualização acadêmica."
+        },
+        {
+          "tipo": "Tradução",
+          "extensao": "Até 70.000 caracteres",
+          "detalhes": "Texto relevante e inédito em português, com autorização e nota introdutória."
+        }
+      ],
+      "checklist": [
+        "Texto inédito",
+        "Arquivo anônimo",
+        "Resumo e Abstract",
+        "3 a 5 palavras-chave e keywords",
+        "ORCID obrigatório",
+        "Afiliação institucional completa"
+      ]
+    },
+    {
+      "id": 8,
+      "nome": "Sociedade e Estado",
+      "instituicao": "Universidade de Brasília (UnB)",
+      "qualis": "A2",
+      "issn": "0102-6992",
+      "foco": "Teoria e Pesquisa em Ciências Sociais",
+      "descricao": "Revista do Departamento de Sociologia e do PPG em Sociologia da UnB. Publica artigos originais, ensaios e resenhas com ênfase em contribuições teóricas e empíricas.",
+      "avaliacao": "Duplo-cega",
+      "taxa": "Gratuita",
+      "periodicidade": "Quadrimestral / Fluxo contínuo",
+      "links": {
+        "site": "https://www.scielo.br/j/se",
+        "submissao": "https://periodicos.unb.br/index.php/sociedade/about/submissions"
+      },
+      "limites": {
+        "caracteres": "Até 60.000",
+        "palavras": "Até 10.000",
+        "resumo": "150 palavras"
+      },
+      "tipos_texto": [
+        {
+          "tipo": "Artigo",
+          "extensao": "Até 60.000 caracteres",
+          "detalhes": "Contribuição teórica ou empírica original."
+        },
+        {
+          "tipo": "Ensaio",
+          "extensao": "Até 50.000 caracteres",
+          "detalhes": "Reflexão teórica inovadora."
+        },
+        {
+          "tipo": "Resenha",
+          "extensao": "Até 12.000 caracteres",
+          "detalhes": "Obra publicada nos últimos 2 anos."
+        }
+      ],
+      "checklist": [
+        "Ineditismo",
+        "Resumo e Abstract",
+        "3 a 5 palavras-chave e keywords",
+        "ORCID obrigatório",
+        "Referências conforme ABNT",
+        "Arquivo sem identificação"
+      ]
+    }
+  ],
+  "normas_gerais": {
+    "etica": [
+      "O manuscrito deve ser inédito (não publicado e não submetido simultaneamente a outro periódico)",
+      "Todos os autores devem aprovar a versão submetida e concordar com a submissão",
+      "Plágio, autoplágio, fabricação e falsificação de dados são causas de rejeição imediata e podem ensejar notificação às instituições de vínculo",
+      "Pesquisas envolvendo seres humanos: obrigatória a explicitação do número de aprovação do Comitê de Ética em Pesquisa (CAAE) no corpo do artigo",
+      "Declaração de contribuição dos autores (taxonomia CRediT) exigida para coautorias",
+      "Declaração de conflito de interesses obrigatória",
+      "Uso de ferramentas de IA generativa deve ser explicitamente declarado na metodologia ou seção de agradecimentos",
+      "Depósito de dados de pesquisa em repositórios de acesso aberto (recomendação SciELO/FAPESP)",
+      "Conformidade com os Códigos de Ética do COPE (Committee on Publication Ethics)"
+    ],
+    "formatacao": {
+      "arquivo": ".doc, .docx, .odt (não aceito .pdf na submissão inicial)",
+      "fonte": "Times New Roman, tamanho 12pt",
+      "espacamento": "1,5 linhas",
+      "margens": "2,5 cm (superior, inferior, esquerda, direita) - padrão ABNT",
+      "alinhamento": "Justificado",
+      "paginas": "Numeradas sequencialmente",
+      "citacoes": "Sistema autor-data (ABNT NBR 10520)",
+      "citacoes_diretas_longas": "Mais de 3 linhas: recuo de 4 cm, fonte 11pt, espaçamento simples, sem aspas",
+      "referencias": "ABNT NBR 6023 - ordem alfabética ao final do texto, com nomes COMPLETOS dos autores",
+      "notas": "Explicativas, numeradas sequencialmente. Preferencialmente ao final do texto (antes das referências)",
+      "tabelas": "Formato editável (Word/Excel), numeradas sequencialmente, título no topo, fonte indicada na base",
+      "figuras": "Alta resolução (mín. 300dpi), legendas na base, numeradas sequencialmente",
+      "siglas": "Explicitadas por extenso na primeira menção"
+    },
+    "checklist_final": [
+      "Ortografia e gramática revisadas",
+      "Coerência entre objetivo, método e conclusão",
+      "Todas as citações conferidas e no formato autor-data",
+      "Todas as referências completas, em ordem alfabética e com nomes COMPLETOS dos autores",
+      "Arquivo anônimo (sem identificação de autores, afiliações, ORCID, agradecimentos)",
+      "ORCID de todos os autores inserido nos metadados da submissão",
+      "Resumo e Abstract dentro do limite especificado",
+      "Palavras-chave e keywords alinhadas ao vocabulário controlado da área",
+      "Declaração de conflito de interesses assinada",
+      "Número CAAE informado (para pesquisas com seres humanos)",
+      "Termo de consentimento livre e esclarecido (quando aplicável)"
+    ]
+  }
+}
