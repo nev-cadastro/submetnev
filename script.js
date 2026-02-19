@@ -1087,7 +1087,7 @@ window.hideGuideView = function() {
 };
 
 // ==============================================
-// CARREGAMENTO DE DADOS
+// CARREGAMENTO DE DADOS COM DETECÇÃO AUTOMÁTICA DE TEMPLATES
 // ==============================================
 function loadData() {
     showLoading(true);
@@ -1103,8 +1103,13 @@ function loadData() {
             if (!data || !data.revistas || !data.revistas.length) {
                 throw new Error('Nenhuma revista encontrada');
             }
+            
+            // Primeiro, carrega os dados do JSON
             window.state.revistas = data.revistas;
             window.state.normasGerais = data.normas_gerais || {};
+
+            // Depois, tenta detectar templates automaticamente
+            detectarTemplatesAutomaticamente();
 
             try {
                 const cacheData = { timestamp: Date.now(), data: data };
@@ -1122,6 +1127,101 @@ function loadData() {
             loadEmergencyData();
             showLoading(false);
         });
+}
+
+// ==============================================
+// FUNÇÃO PARA DETECTAR TEMPLATES AUTOMATICAMENTE
+// ==============================================
+function detectarTemplatesAutomaticamente() {
+    // Lista de possíveis templates na pasta (simulada - no sistema real, isso dependeria de um endpoint)
+    // Como não temos acesso ao sistema de arquivos via JavaScript puro,
+    // vamos simular a detecção baseada em um padrão de nomenclatura
+    
+    // Mapeamento de nomes de revistas para prefixes usados nos templates
+    const mapaPrefixes = {
+        "Revista Brasileira de Ciências Sociais (RBCS)": "RBCS_ANPOCS",
+        "DADOS – Revista de Ciências Sociais": "DADOS",
+        "Tempo Social – Revista de Sociologia": "Tempo_Social",
+        "Sociologias": "Sociologias",
+        "Revista Brasileira de Sociologia (RBS)": "RBS",
+        "Revista Brasileira de Segurança Pública (RBSP)": "RBSP",
+        "Dilemas - Revista de Estudos de Conflito e Controle Social": "Dilemas",
+        "Sociedade e Estado": "Sociedade_Estado"
+    };
+
+    // Mapeamento de tipos de texto para sufixos
+    const mapaSufixos = {
+        "artigo": "Artigo_Cientifico",
+        "artigo científico": "Artigo_Cientifico",
+        "artigo original": "Artigo_Cientifico",
+        "ensaio": "Ensaio_Critico",
+        "ensaio crítico": "Ensaio_Critico",
+        "ensaio teórico": "Ensaio_Teorico",
+        "resenha": "Resenha",
+        "resenhas": "Resenha",
+        "dossiê": "Dossie",
+        "dossiês": "Dossie",
+        "nota de pesquisa": "Nota_Pesquisa",
+        "artigo técnico": "Artigo_Tecnico",
+        "entrevista": "Entrevista",
+        "tradução": "Traducao"
+    };
+
+    // Para cada revista
+    for (let i = 0; i < window.state.revistas.length; i++) {
+        const revista = window.state.revistas[i];
+        
+        // Pega o prefixo baseado no nome da revista
+        let prefixo = null;
+        for (let nomeRevista in mapaPrefixes) {
+            if (revista.nome.includes(nomeRevista) || nomeRevista.includes(revista.nome)) {
+                prefixo = mapaPrefixes[nomeRevista];
+                break;
+            }
+        }
+        
+        // Se não encontrou prefixo, tenta criar um a partir do nome
+        if (!prefixo) {
+            // Pega a primeira parte do nome (antes de " -" ou " –" ou " (")
+            let nomeBase = revista.nome.split(/[ –(-]/)[0].trim();
+            // Remove caracteres especiais e espaços
+            prefixo = nomeBase.replace(/[^\w\s]/g, '').replace(/\s+/g, '_');
+        }
+
+        // Para cada tipo de texto na revista
+        if (revista.tipos_texto && revista.tipos_texto.length > 0) {
+            for (let j = 0; j < revista.tipos_texto.length; j++) {
+                const tipo = revista.tipos_texto[j];
+                
+                // Se já tem template definido no JSON, mantém
+                if (tipo.template) continue;
+                
+                // Tenta encontrar um sufixo baseado no tipo de texto
+                let sufixo = null;
+                const tipoLower = tipo.tipo.toLowerCase();
+                
+                for (let chave in mapaSufixos) {
+                    if (tipoLower.includes(chave)) {
+                        sufixo = mapaSufixos[chave];
+                        break;
+                    }
+                }
+                
+                // Se encontrou sufixo, tenta montar o caminho do template
+                if (sufixo) {
+                    const nomeArquivo = `${prefixo}_${sufixo}.docx`;
+                    const caminhoTemplate = `templates/${nomeArquivo}`;
+                    
+                    // Não podemos verificar se o arquivo existe via JavaScript puro,
+                    // então apenas atribuímos o caminho. O sistema tentará baixar
+                    // e, se não existir, mostrará um toast de erro.
+                    tipo.template = caminhoTemplate;
+                    
+                    console.log(`Template sugerido para ${revista.nome} - ${tipo.tipo}: ${caminhoTemplate}`);
+                }
+            }
+        }
+    }
 }
 
 // ==============================================
