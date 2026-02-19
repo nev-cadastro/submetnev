@@ -160,6 +160,11 @@
         .modal-overlay.show .modal-content {
             transform: scale(1);
         }
+        
+        /* Rotações para ícones de accordion */
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -289,7 +294,7 @@
                 </div>
             </div>
 
-            <!-- VIEW DE GUIAS DE REDAÇÃO (NOVA) -->
+            <!-- VIEW DE GUIAS DE REDAÇÃO -->
             <div id="guide-view" class="hidden animate-fade-in">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                     <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 flex items-center gap-3">
@@ -372,7 +377,7 @@
     <!-- CONTAINER PARA TOASTS -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-3"></div>
 
-    <!-- SCRIPT PRINCIPAL (MODIFICADO) -->
+    <!-- SCRIPT PRINCIPAL -->
     <script src="script.js"></script>
     
     <!-- FUNÇÕES GLOBAIS PARA CONTROLE DO MODAL -->
@@ -397,6 +402,7 @@
             }
         };
 
+        // Fechar modal ao clicar fora
         document.addEventListener('click', function(event) {
             const modal = document.getElementById('terms-modal');
             if (modal && modal.classList.contains('show')) {
@@ -406,6 +412,7 @@
             }
         });
 
+        // Fechar modal com tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const modal = document.getElementById('terms-modal');
@@ -414,6 +421,44 @@
                 }
             }
         });
+    </script>
+
+    <!-- FUNÇÃO goToHome (definida também no script.js, mas mantida para segurança) -->
+    <script>
+        window.goToHome = window.goToHome || function() {
+            // Esconde todas as views secundárias
+            const detailView = document.getElementById('detail-view');
+            const generalNormsView = document.getElementById('general-norms-view');
+            const guideView = document.getElementById('guide-view');
+            const mainView = document.getElementById('main-view');
+            
+            if (detailView) detailView.classList.add('hidden');
+            if (generalNormsView) generalNormsView.classList.add('hidden');
+            if (guideView) guideView.classList.add('hidden');
+            if (mainView) mainView.classList.remove('hidden');
+            
+            // Limpa filtros e busca (se o state existir)
+            if (window.state) {
+                window.state.filtroQualis = 'Todos';
+                window.state.searchTerm = '';
+                
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) searchInput.value = '';
+                
+                // Re-renderiza
+                if (typeof window.renderQualisFilters === 'function') {
+                    window.renderQualisFilters();
+                }
+                if (typeof window.renderMainView === 'function') {
+                    window.renderMainView();
+                }
+                if (typeof window.updateResultsCount === 'function') {
+                    window.updateResultsCount();
+                }
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
     </script>
 </body>
 </html>
