@@ -15,7 +15,7 @@
       "preprint": "Permitido (SciELO Preprints e outros servidores aprovados)",
       "licenca": "CC BY",
       "links": {
-        "site": "https://anpocs.org.br/normas-para-publicacao-na-revista-brasileira-de-ciencias-sociais/",
+        "site": "https://anpocs.org.br/rbcs/",
         "submissao": "https://submission.scielo.br/index.php/rbcsoc/login",
         "diretrizes": "https://anpocs.org.br/normas-para-publicacao-na-revista-brasileira-de-ciencias-sociais/"
       },
@@ -29,12 +29,14 @@
         {
           "tipo": "Artigo científico",
           "extensao": "7.000 a 9.000 palavras",
-          "detalhes": "Pesquisa original e inédita. Deve conter problema explícito, argumento central, metodologia clara e contribuição substantiva."
+          "detalhes": "Pesquisa original e inédita. Deve conter problema explícito, argumento central, metodologia clara e contribuição substantiva.",
+          "template": "templates/RBCS_ANPOCS_Artigo_Cientifico.docx"
         },
         {
           "tipo": "Ensaio crítico",
           "extensao": "Até 3.000 palavras",
-          "detalhes": "Análise de livro recente (últimos 24 meses) + mínimo 2 referências adicionais. Avaliado pela Comissão Editorial."
+          "detalhes": "Análise de livro recente (últimos 24 meses) + mínimo 2 referências adicionais. Avaliado pela Comissão Editorial.",
+          "template": "templates/RBCS_ANPOCS_Ensaio_Critico.docx"
         }
       ],
       "checklist": [
