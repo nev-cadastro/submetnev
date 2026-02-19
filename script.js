@@ -574,9 +574,9 @@ window.showRevistaDetail = function(id) {
                         
                         ${tipo.template ? `
                             <button onclick="window.downloadTemplate('${tipo.template}')" 
-                                class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium flex items-center gap-2 shadow-md hover:shadow-lg transition-all shrink-0 self-start">
-                                <i class="fas fa-download"></i>
-                                <span>Template</span>
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-extrabold flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all shrink-0 self-start border-2 border-blue-800 hover:border-blue-900 transform hover:scale-105">
+                                <i class="fas fa-download text-xl"></i>
+                                <span>📥 BAIXAR TEMPLATE CORRESPONDENTE</span>
                             </button>
                         ` : ''}
                     </div>
