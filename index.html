@@ -509,5 +509,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
     </script>
+    if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
 </body>
 </html>
