@@ -589,9 +589,15 @@ window.showRevistaDetail = function(id) {
                         
                         ${tipo.template ? `
                             <button onclick="window.downloadTemplate('${tipo.template}')" 
-                                class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium flex items-center gap-2 shadow-md hover:shadow-lg transition-all shrink-0 self-start">
-                                <i class="fas fa-download"></i>
-                                <span>Template</span>
+                                class="bg-green-600 hover:bg-green-700 text-white px-6 py-3.5 rounded-xl text-sm font-black tracking-wider flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all shrink-0 self-start border-2 border-white/20 group">
+                                <div class="bg-green-500 p-2 rounded-lg group-hover:bg-green-400 transition-colors">
+                                    <i class="fas fa-download text-white"></i>
+                                </div>
+                                <div class="flex flex-col items-start">
+                                    <span class="text-[10px] text-green-200 font-normal">DOWNLOAD</span>
+                                    <span class="text-base leading-5">TEMPLATE</span>
+                                </div>
+                                <span class="bg-yellow-400 text-green-900 text-[10px] font-black px-2 py-1 rounded-md ml-1 shadow-inner">.docx</span>
                             </button>
                         ` : ''}
                     </div>
