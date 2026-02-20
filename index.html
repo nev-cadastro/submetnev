@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <meta name="description" content="SubmetNEV - NEV/USP. Diretrizes para submissão em revistas de Ciências Sociais.">
-    <title>NEV/USP · Normas de Publicação</title>
+    <meta name="description" content="SubmetNEV - NEV/USP. Diretrizes oficiais para submissão em periódicos de Ciências Sociais.">
+    <title>NEV/USP · SubmetNEV - Normas para Publicação Acadêmica</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="imagem/icone_submetnev.png">
 
@@ -282,13 +282,14 @@
                 <div class="flex items-center justify-center gap-3 mb-3">
                     <img src="imagem/icone_submetnev.png" alt="SubmetNEV" class="h-6 w-auto grayscale opacity-60">
                     <p class="text-slate-500 text-xs font-medium uppercase tracking-widest">
-                        © 2026 · NEV · USP
+                        © 2026 · Núcleo de Estudos da Violência · Universidade de São Paulo
                     </p>
                 </div>
                 <p class="text-slate-400 text-[11px] max-w-2xl mx-auto leading-relaxed">
-                    As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista.<br>
-                    <button onclick="window.openTermsModal()" class="text-[#003366] font-semibold hover:underline mt-2">
-                        Termos de Uso e Responsabilidade
+                    As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista para versões atualizadas.<br>
+                    <button onclick="window.openTermsModal()" class="text-[#003366] font-semibold hover:underline mt-2 inline-flex items-center gap-1">
+                        <i class="fas fa-file-contract text-xs"></i>
+                        Termos de Uso, Responsabilidade e Política de Privacidade
                     </button>
                 </p>
             </div>
@@ -298,17 +299,34 @@
     <div id="terms-modal" class="modal-overlay" aria-hidden="true">
         <div class="modal-content p-8" role="dialog" aria-modal="true">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h3 class="text-xl font-bold text-[#003366]">Termos de Uso</h3>
+                <h3 class="text-xl font-bold text-[#003366] flex items-center gap-2">
+                    <i class="fas fa-gavel"></i> Termos de Uso e Compromisso do Pesquisador
+                </h3>
                 <button onclick="window.closeTermsModal()" class="text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
             </div>
-            <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
-                <p><strong>1. Finalidade Acadêmica:</strong> Sistema desenvolvido pelo NEV/USP para apoio a pesquisadores. Dados baseados em diretrizes públicas.</p>
-                <p><strong>2. Responsabilidade:</strong> O autor deve confirmar as normas no site oficial do periódico antes da submissão final.</p>
-                <p><strong>3. Propriedade:</strong> Design e código pertencem ao NEV/USP.</p>
+            <div class="space-y-5 text-slate-600 text-sm leading-relaxed">
+                <div class="bg-slate-50 p-4 rounded-lg border-l-4 border-[#003366]">
+                    <p><strong class="text-[#003366]">1. Finalidade Acadêmica e Institucional:</strong> O SubmetNEV é uma ferramenta desenvolvida pelo Núcleo de Estudos da Violência da Universidade de São Paulo (NEV/USP) com o objetivo de apoiar a comunidade científica no processo de submissão de artigos. As informações disponibilizadas são consolidadas a partir de diretrizes públicas e fontes oficiais dos periódicos.</p>
+                </div>
+                
+                <div>
+                    <p><strong class="text-[#003366]">2. Responsabilidade do Usuário e Verificação Oficial:</strong> O pesquisador é integralmente responsável pela conferência e validação das normas de submissão no website oficial do periódico antes da submissão final. O NEV/USP não se responsabiliza por eventuais discrepâncias, atualizações ou decisões editoriais dos periódicos indexados.</p>
+                </div>
+                
+                <div>
+                    <p><strong class="text-[#003366]">3. Propriedade Intelectual e Atribuição:</strong> O design, código-fonte e estrutura do SubmetNEV são de propriedade exclusiva do NEV/USP, protegidos por legislação de direitos autorais. É vedada a reprodução não autorizada ou o uso comercial sem consentimento expresso da instituição.</p>
+                </div>
+
+                <div>
+                    <p><strong class="text-[#003366]">4. Privacidade e Dados de Navegação:</strong> Este sistema não coleta dados pessoais sem consentimento explícito. Informações de navegação são utilizadas exclusivamente para melhoria da experiência do usuário e análises estatísticas internas, em conformidade com a LGPD.</p>
+                </div>
             </div>
-            <div class="mt-8 flex justify-end">
-                <button onclick="window.closeTermsModal()" class="bg-[#003366] text-white px-8 py-2 rounded-md font-semibold hover:bg-blue-900 transition-colors">
-                    Entendido
+            <div class="mt-8 flex justify-end gap-3">
+                <button onclick="window.closeTermsModal()" class="border border-slate-300 text-slate-700 px-6 py-2 rounded-md font-medium hover:bg-slate-50 transition-colors">
+                    Fechar
+                </button>
+                <button onclick="window.closeTermsModal()" class="bg-[#003366] text-white px-8 py-2 rounded-md font-semibold hover:bg-blue-900 transition-colors shadow-sm">
+                    Estou Ciente e Concordo
                 </button>
             </div>
         </div>
