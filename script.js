@@ -5,6 +5,7 @@
 // ✅ Apenas RBCS acessível (outras revistas mostram "em construção")
 // ✅ Ícone do sistema no footer e favicon
 // ✅ Tipos de texto com título maior e botão de template ao lado
+// ✅ Botão de download verde escuro com função corrigida
 // ==============================================
 
 window.state = {
@@ -573,7 +574,7 @@ window.showRevistaDetail = function(id) {
             else if (tipoLower.includes('artigo') || tipoLower.includes('dossiê') || tipoLower.includes('dossie')) guiaId = 'artigo';
             else if (tipoLower.includes('ensaio')) guiaId = 'ensaio';
             
-            // === MELHORIA VISUAL: Título maior e botão de template ao lado ===
+            // === MELHORIA VISUAL: Título maior e botão de template ao lado (VERDE ESCURO) ===
             tiposTextoHtml += `
                 <div class="bg-white p-5 rounded-xl border border-slate-200 hover:border-blue-300 transition-all">
                     <!-- Cabeçalho com título e botão lado a lado -->
@@ -584,11 +585,11 @@ window.showRevistaDetail = function(id) {
                         </div>
                         
                         ${tipo.template ? `
-                            <button onclick="window.downloadTemplate('${tipo.template}')" 
-                                class="btn-template" style="font-size: 0.85rem; padding: 0.6rem 1.2rem; background-color: #f0f4fa; border: 1px solid #cbd5e1; border-radius: 30px; color: #003366; font-weight: 600; transition: all 0.2s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,51,102,0.05);">
+                            <button onclick="window.downloadTemplate('${tipo.template}', '${tipo.tipo}')" 
+                                class="btn-template" style="font-size: 0.85rem; padding: 0.6rem 1.2rem; background-color: #0f5e3f; border: 1px solid #0a4a32; border-radius: 30px; color: white; font-weight: 600; transition: all 0.2s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,51,102,0.1); hover:background-color: #0a4a32;">
                                 <i class="fas fa-download" style="font-size: 0.8rem;"></i>
-                                <span>Template</span>
-                                <span style="background-color: #e2e8f0; padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; color: #475569;">.docx</span>
+                                <span>Baixar Template</span>
+                                <span style="background-color: rgba(255,255,255,0.2); padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; color: #e2e8f0;">.docx</span>
                             </button>
                         ` : ''}
                     </div>
@@ -734,7 +735,7 @@ window.showRevistaDetail = function(id) {
                 </div>
             </div>
             
-            <!-- Tipos de Texto com TÍTULO MAIOR E BOTÃO AO LADO -->
+            <!-- Tipos de Texto com TÍTULO MAIOR E BOTÃO AO LADO (VERDE ESCURO) -->
             <div class="bg-slate-50 rounded-xl p-6">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -765,28 +766,79 @@ window.hideRevistaDetail = function() {
 };
 
 // ==============================================
-// DOWNLOAD DE TEMPLATE
+// DOWNLOAD DE TEMPLATE - VERSÃO CORRIGIDA E MELHORADA
 // ==============================================
-window.downloadTemplate = function(templatePath) {
+window.downloadTemplate = function(templatePath, tipoTexto) {
     if (!templatePath) {
         showToast('Template não disponível para este tipo de texto.', 'warning');
         return;
     }
 
+    showToast(`Preparando download do template para ${tipoTexto || 'documento'}...`, 'info');
+
     try {
-        const link = document.createElement('a');
-        link.href = templatePath;
-        link.download = templatePath.split('/').pop();
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        showToast('Download iniciado!', 'success');
+        // Tenta diferentes abordagens para download
+        
+        // Abordagem 1: Usar fetch para verificar se o arquivo existe
+        fetch(templatePath, { method: 'HEAD', cache: 'no-cache' })
+            .then(response => {
+                if (response.ok) {
+                    // Arquivo existe - prosseguir com download
+                    realizarDownload(templatePath);
+                } else {
+                    // Arquivo não encontrado
+                    console.warn('Template não encontrado no caminho:', templatePath);
+                    
+                    // Tentar abordagem alternativa - abrir em nova aba
+                    window.open(templatePath, '_blank');
+                    showToast('Template não encontrado localmente. Verificando online...', 'warning');
+                    
+                    // Verificar se é um caminho relativo e tentar ajustar
+                    if (!templatePath.startsWith('http') && !templatePath.startsWith('/')) {
+                        const caminhoAlternativo = './' + templatePath;
+                        window.open(caminhoAlternativo, '_blank');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao verificar template:', error);
+                // Fallback: tentar download direto
+                realizarDownload(templatePath);
+            });
     } catch (error) {
-        window.open(templatePath, '_blank');
-        showToast('Tentando abrir o template em nova aba...', 'info');
+        console.error('Erro no download:', error);
+        showToast('Erro ao baixar template. Tente novamente.', 'error');
     }
 };
+
+// Função auxiliar para realizar o download propriamente dito
+function realizarDownload(templatePath) {
+    try {
+        // Criar link temporário
+        const link = document.createElement('a');
+        link.href = templatePath;
+        link.download = templatePath.split('/').pop(); // Extrai o nome do arquivo
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        
+        // Adicionar ao DOM, clicar e remover
+        document.body.appendChild(link);
+        link.click();
+        
+        // Pequeno delay para garantir que o clique foi processado
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+        
+        showToast('Download iniciado!', 'success');
+    } catch (error) {
+        console.error('Erro no download direto:', error);
+        
+        // Fallback: abrir em nova aba
+        window.open(templatePath, '_blank');
+        showToast('Abrindo template em nova aba...', 'info');
+    }
+}
 
 // ==============================================
 // RENDERIZAÇÃO DA VIEW DE GUIAS
