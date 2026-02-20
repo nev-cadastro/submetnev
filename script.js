@@ -706,7 +706,7 @@ window.showRevistaDetail = function(id) {
                 </a>
                 ${revista.links?.diretrizes ? `
                     <a href="${revista.links.diretrizes}" target="_blank"
-                        class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-lg font-medium flex items-center gap-2 transition-all">
+                        class="bg-slate-100 border-2 border-black hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-lg font-medium flex items-center gap-2 transition-all">
                         <i class="fas fa-file-alt"></i> Diretrizes
                     </a>
                 ` : ''}
