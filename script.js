@@ -4,6 +4,7 @@
 // ✅ Cards enxutos na página inicial
 // ✅ Apenas RBCS acessível (outras revistas mostram "em construção")
 // ✅ Ícone do sistema no footer e favicon
+// ✅ Tipos de texto com título maior e botão de template ao lado
 // ==============================================
 
 window.state = {
@@ -543,7 +544,7 @@ function renderMainView() {
 }
 
 // ==============================================
-// VIEW DE DETALHE DA REVISTA (COMPLETA)
+// VIEW DE DETALHE DA REVISTA (COMPLETA COM MELHORIAS VISUAIS)
 // ==============================================
 
 window.showRevistaDetail = function(id) {
@@ -572,35 +573,31 @@ window.showRevistaDetail = function(id) {
             else if (tipoLower.includes('artigo') || tipoLower.includes('dossiê') || tipoLower.includes('dossie')) guiaId = 'artigo';
             else if (tipoLower.includes('ensaio')) guiaId = 'ensaio';
             
+            // === MELHORIA VISUAL: Título maior e botão de template ao lado ===
             tiposTextoHtml += `
                 <div class="bg-white p-5 rounded-xl border border-slate-200 hover:border-blue-300 transition-all">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2 flex-wrap">
-                                <h4 class="font-bold text-blue-800 text-lg">${tipo.tipo}</h4>
-                                ${tipo.template ? '<span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full"><i class="fas fa-download mr-1"></i>Template</span>' : ''}
-                                ${guiaId ? '<span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full"><i class="fas fa-compass mr-1"></i>Guia</span>' : ''}
-                            </div>
-                            <p class="text-sm text-slate-500 font-medium">${tipo.extensao || ''}</p>
-                            <p class="text-sm text-slate-600 mt-2">${tipo.detalhes || ''}</p>
-                            
-                            ${guiaId ? renderizarGuia(guiaId) : ''}
+                    <!-- Cabeçalho com título e botão lado a lado -->
+                    <div class="documento-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                            <h4 class="documento-titulo" style="font-size: 1.6rem; font-weight: 700; color: #003366; letter-spacing: -0.02em; line-height: 1.3; margin: 0;">${tipo.tipo}</h4>
+                            ${guiaId ? '<span class="text-xs bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full font-medium"><i class="fas fa-compass mr-1"></i>Guia disponível</span>' : ''}
                         </div>
                         
                         ${tipo.template ? `
                             <button onclick="window.downloadTemplate('${tipo.template}')" 
-                                class="bg-green-600 hover:bg-green-700 text-white px-6 py-3.5 rounded-xl text-sm font-black tracking-wider flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all shrink-0 self-start border-2 border-white/20 group">
-                                <div class="bg-green-500 p-2 rounded-lg group-hover:bg-green-400 transition-colors">
-                                    <i class="fas fa-download text-white"></i>
-                                </div>
-                                <div class="flex flex-col items-start">
-                                    <span class="text-[10px] text-green-200 font-normal">DOWNLOAD</span>
-                                    <span class="text-base leading-5">TEMPLATE</span>
-                                </div>
-                                <span class="bg-yellow-400 text-green-900 text-[10px] font-black px-2 py-1 rounded-md ml-1 shadow-inner">.docx</span>
+                                class="btn-template" style="font-size: 0.85rem; padding: 0.6rem 1.2rem; background-color: #f0f4fa; border: 1px solid #cbd5e1; border-radius: 30px; color: #003366; font-weight: 600; transition: all 0.2s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,51,102,0.05);">
+                                <i class="fas fa-download" style="font-size: 0.8rem;"></i>
+                                <span>Template</span>
+                                <span style="background-color: #e2e8f0; padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; color: #475569;">.docx</span>
                             </button>
                         ` : ''}
                     </div>
+                    
+                    <!-- Informações adicionais do tipo de texto -->
+                    <p class="text-sm text-slate-500 font-medium mb-2">${tipo.extensao || ''}</p>
+                    <p class="text-sm text-slate-600 mb-4">${tipo.detalhes || ''}</p>
+                    
+                    ${guiaId ? renderizarGuia(guiaId) : ''}
                 </div>
             `;
         }
@@ -737,7 +734,7 @@ window.showRevistaDetail = function(id) {
                 </div>
             </div>
             
-            <!-- Tipos de Texto com BOTÕES E GUIAS -->
+            <!-- Tipos de Texto com TÍTULO MAIOR E BOTÃO AO LADO -->
             <div class="bg-slate-50 rounded-xl p-6">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
