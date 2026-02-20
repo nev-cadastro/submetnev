@@ -176,6 +176,55 @@
             font-size: 11px;
             padding: 6px 10px;
         }
+
+        /* ===== MELHORIAS NA TELA DE DETALHE DA REVISTA ===== */
+        /* Ajustes para o nome do tipo de texto e botão de template */
+        .tipo-documento {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .tipo-documento .tipo-nome {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #003366;
+            letter-spacing: -0.02em;
+        }
+        .tipo-documento .btn-template {
+            font-size: 0.85rem;
+            padding: 0.35rem 1rem;
+            background-color: #f0f4fa;
+            border: 1px solid #cbd5e1;
+            border-radius: 30px; /* botão mais suave */
+            color: #003366;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .tipo-documento .btn-template:hover {
+            background-color: #e2e8f0;
+            border-color: #003366;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,51,102,0.1);
+        }
+        .tipo-documento .btn-template i {
+            font-size: 0.75rem;
+        }
+
+        /* Responsividade: em telas pequenas, empilhar */
+        @media (max-width: 640px) {
+            .tipo-documento {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
     </style>
 </head>
 
