@@ -8,345 +8,259 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="imagem/icone_submetnev.png">
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* REFINAMENTO VISUAL INSTITUCIONAL - SUBMETNEV */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ESTILOS EXISTENTES - mantenha tudo que já estava aqui */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f4f7f9; /* Cinza neutro acadêmico */
-            min-height: 100vh;
-            color: #1e293b;
-            line-height: 1.6;
-        }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+    }
 
-        /* Header Acadêmico */
-        header {
-            border-bottom: 3px solid #003366 !important; /* Azul Profundo USP */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-            background-color: rgba(255, 255, 255, 0.95) !important;
-        }
+    header {
+        border-bottom: 3px solid #003366;
+        background-color: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
 
-        /* Cards e Estrutura */
-        .card-shadow {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px !important; /* Bordas mais sóbrias */
-        }
+    .revista-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .revista-card:hover {
+        border-color: #003366;
+        box-shadow: 0 8px 16px rgba(0, 51, 102, 0.08);
+        transform: translateY(-2px);
+    }
 
-        .card-shadow:hover {
-            border-color: #003366;
-            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.08);
-            transform: translateY(-2px);
-        }
+    /* NOVO: Container para imagem quadrada perfeita */
+    .card-image-container {
+        width: 100%;
+        padding-top: 100%; /* 1:1 Aspect Ratio */
+        position: relative;
+        overflow: hidden;
+        background-color: #f1f5f9;
+    }
 
-        /* Tipografia */
-        h2 { 
-            color: #003366; 
-            font-weight: 800 !important; 
-            letter-spacing: -0.025em;
-        }
-        
-        .font-bold { font-weight: 700 !important; }
-        .font-extrabold { font-weight: 800 !important; }
+    .card-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 
-        /* Filtros e Inputs */
-        .filter-btn {
-            transition: all 0.2s ease;
-            border: 1px solid #e2e8f0 !important;
-            font-weight: 500;
-            color: #64748b;
-            background: #fff !important;
-            border-radius: 6px !important;
-        }
+    .filter-btn {
+        transition: all 0.2s;
+        border: 1px solid #e2e8f0;
+        background: white;
+        color: #64748b;
+        font-weight: 500;
+        border-radius: 30px;
+        padding: 0.4rem 1rem;
+        font-size: 0.875rem;
+    }
+    .filter-btn.active {
+        background: #003366;
+        color: white;
+        border-color: #003366;
+    }
 
-        .filter-btn.active {
-            background-color: #003366 !important; /* Azul Institucional */
-            color: #ffffff !important;
-            border-color: #003366 !important;
-            box-shadow: 0 2px 4px rgba(0, 51, 102, 0.2);
-        }
+    .tab {
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .tab.active {
+        border-bottom-color: #003366;
+        color: #003366;
+        font-weight: 600;
+    }
 
-        #search-input {
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 8px !important;
-            background-color: #ffffff !important;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
+    .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        background: #1e293b;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 9999;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-left: 4px solid #10b981; }
+    .toast.error { border-left: 4px solid #ef4444; }
+    .toast.warning { border-left: 4px solid #f59e0b; }
+    .toast.info { border-left: 4px solid #3b82f6; }
 
-        #search-input:focus {
-            border-color: #003366 !important;
-            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1) !important;
-        }
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+    }
+    .modal-overlay.show { opacity: 1; visibility: visible; }
+    .modal-content {
+        background: white;
+        border-radius: 12px;
+        max-width: 90%;
+        width: 600px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 50px -12px black;
+    }
 
-        /* Botões de Apoio */
-        header button.bg-blue-50\/80 {
-            background-color: #f8fafc !important;
-            color: #003366 !important;
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 8px !important;
-        }
+    .admin-panel {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 1.5rem;
+    }
+    .admin-panel input, .admin-panel textarea, .admin-panel select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 0.875rem;
+    }
+    .admin-panel label {
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: #334155;
+    }
 
-        header button.bg-amber-50\/80 {
-            background-color: #ffffff !important;
-            color: #856404 !important;
-            border: 1px solid #d4af37 !important; /* Dourado Acadêmico */
-            border-radius: 8px !important;
-        }
-
-        header button.bg-amber-50\/80:hover {
-            background-color: #fdfaf0 !important;
-            border-color: #b8860b !important;
-        }
-
-        /* Utilitários */
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-
-        /* Toasts e Modais */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            padding: 12px 20px;
-            background: #1e293b;
-            color: white;
-            border-radius: 6px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 9999;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        .toast.show { transform: translateY(0); opacity: 1; }
-        .toast.info { border-left: 4px solid #3b82f6; }
-        .toast.success { border-left: 4px solid #10b981; }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(2px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .modal-overlay.show { opacity: 1; visibility: visible; }
-        .modal-content {
-            background: white;
-            border-top: 5px solid #003366;
-            border-radius: 8px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: scale(0.98);
-            transition: transform 0.2s ease;
-        }
-        .modal-overlay.show .modal-content { transform: scale(1); }
-
-        .logo-button { transition: opacity 0.2s ease; }
-        .logo-button:hover { opacity: 0.85; }
-
-        .tooltip-text {
-            background-color: #003366;
-            border-radius: 4px;
-            font-size: 11px;
-            padding: 6px 10px;
-        }
-
-        /* ===== ESTILOS PARA A TELA DE DETALHE DA REVISTA ===== */
-        /* Container para cada tipo de documento */
-        .documento-item {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        /* Cabeçalho com título e botão lado a lado */
-        .documento-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        /* Título do tipo de documento (ARTIGO, ENSAIO, RESENHA, etc.) - AGORA MAIOR */
-        .documento-titulo {
-            font-size: 1.5rem !important; /* Aumentado significativamente */
-            font-weight: 700;
-            color: #003366;
-            letter-spacing: -0.02em;
-            line-height: 1.3;
-            margin: 0;
-        }
-        
-        /* Botão de download do template - MENOR e ao lado do título */
-        .btn-template {
-            font-size: 0.85rem;
-            padding: 0.5rem 1.2rem;
-            background-color: #f0f4fa;
-            border: 1px solid #cbd5e1;
-            border-radius: 30px;
-            color: #003366;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        
-        .btn-template:hover {
-            background-color: #e2e8f0;
-            border-color: #003366;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,51,102,0.1);
-        }
-        
-        .btn-template i {
-            font-size: 0.8rem;
-        }
-        
-        /* Conteúdo das normas (descrição do documento) */
-        .documento-conteudo {
-            color: #334155;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-top: 0.5rem;
-        }
-        
-        /* Responsividade para telas pequenas */
-        @media (max-width: 640px) {
-            .documento-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .btn-template {
-                align-self: flex-start;
-            }
-        }
-    </style>
+    /* Utilitários */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
 </head>
-
 <body class="antialiased">
     <div id="app" class="min-h-screen flex flex-col">
+        <!-- Cabeçalho -->
         <header class="sticky top-0 z-50 py-2 px-4">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
-                
-                <button onclick="window.goToHome()" class="flex items-center gap-3 logo-button" aria-label="Ir para a página inicial">
-                    <img src="imagem/logo_submetnev.png" alt="NEV/USP" 
-                         class="h-24 md:h-36 w-auto object-contain"
+                <!-- Logo / Home -->
+                <button onclick="window.goToHome()" class="flex items-center gap-3 hover:opacity-80 transition">
+                    <img src="imagem/logo_submetnev.png" alt="NEV/USP" class="h-16 md:h-24 w-auto object-contain"
                          onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDI0MCA4MCIgZmlsbD0iIzFkNGVkOCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI4MCIgcng9IjgiIGZpbGw9IiMxZTQwYWYiLz48dGV4dCB4PSIyMCIgeT0iNDgiIGZvbnQtZmFtaWx5PSJJbnRlciwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiPk5FVjwvdGV4dD48L3N2Zz4=';">
-                    
                     <div class="hidden md:block border-l border-slate-200 pl-3">
-                        <p class="text-[11px] text-[#003366] font-semibold leading-relaxed tracking-wide uppercase">
-                            Apoio ao autor<br>
-                            <span class="text-slate-500 font-normal normal-case">NEV/USP · Universidade de São Paulo</span>
-                        </p>
+                        <p class="text-xs text-[#003366] font-semibold uppercase">Apoio ao autor</p>
+                        <p class="text-xs text-slate-500">NEV/USP · Universidade de São Paulo</p>
                     </div>
                 </button>
 
+                <!-- Botões de navegação -->
                 <div class="flex gap-2">
                     <button onclick="window.showGeneralNorms()" 
-                        class="group relative bg-blue-50/80 hover:bg-blue-100 text-blue-600 font-medium px-4 py-2 flex items-center gap-2 border shadow-sm transition-all"
-                        aria-label="Visualizar normas gerais de publicação">
-                        <i class="fas fa-info-circle text-xs"></i>
-                        <span class="text-xs sm:text-sm">Normas Gerais</span>
+                        class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 border border-blue-200 transition">
+                        <i class="fas fa-info-circle"></i> Normas Gerais
                     </button>
                     <button onclick="window.showGuideView()" 
-                        class="group relative bg-amber-50/80 hover:bg-amber-100 text-amber-700 font-medium px-4 py-2 flex items-center gap-2 border shadow-sm transition-all"
-                        aria-label="Visualizar guias de redação acadêmica">
-                        <i class="fas fa-compass text-xs"></i>
-                        <span class="text-xs sm:text-sm">Guias de Redação</span>
+                        class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 border border-amber-200 transition">
+                        <i class="fas fa-compass"></i> Guias de Redação
+                    </button>
+                    <button onclick="window.openAdminModal()" 
+                        class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 border border-slate-300 transition">
+                        <i class="fas fa-lock"></i> Área Restrita
                     </button>
                 </div>
             </div>
         </header>
 
+        <!-- Conteúdo principal -->
         <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
-            
+            <!-- VIEW PRINCIPAL (lista de revistas) -->
             <div id="main-view">
-                <div class="bg-white rounded-xl card-shadow p-6 md:p-7 mb-8 border border-slate-200">
-                    <div class="relative mb-6 group">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-search text-slate-400 group-focus-within:text-[#003366] transition-colors"></i>
-                        </div>
-                        <input type="text" id="search-input" 
-                               placeholder="Buscar revista por nome, instituição ou foco..." 
-                               class="w-full pl-12 pr-5 py-3.5 outline-none transition-all text-base"
-                               autocomplete="off">
+                <!-- Barra de busca e filtros -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 mb-8 shadow-sm">
+                    <div class="relative mb-5">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="search-input" placeholder="Buscar revista por nome, instituição ou foco..." 
+                               class="w-full pl-12 pr-12 py-3 border border-slate-200 rounded-lg focus:border-[#003366] focus:ring-1 focus:ring-[#003366] outline-none">
                         <button id="clear-search" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 hidden">
                             <i class="fas fa-times-circle"></i>
                         </button>
                     </div>
-                    
-                    <div class="flex flex-wrap items-center gap-4">
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
-                            <i class="fas fa-filter text-[#003366]"></i> Filtrar Qualis:
-                        </span>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="text-sm font-semibold text-slate-600"><i class="fas fa-filter text-[#003366] mr-1"></i>Qualis:</span>
                         <div id="qualis-filters" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
-                
-                <div class="mb-6 flex flex-wrap justify-between items-center">
-                    <h2 class="text-slate-700 text-lg flex items-center gap-2" id="results-count">
+
+                <!-- Contador de resultados -->
+                <div class="mb-5 flex justify-between items-center">
+                    <h2 id="results-count" class="text-slate-600 text-sm flex items-center gap-2">
                         <i class="fas fa-spinner animate-spin text-[#003366]"></i> Carregando...
                     </h2>
                 </div>
 
+                <!-- Grid de revistas -->
                 <div id="revistas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
             </div>
 
-            <div id="detail-view" class="hidden animate-fade-in">
+            <!-- VIEW DETALHE DA REVISTA -->
+            <div id="detail-view" class="hidden">
                 <div id="revista-detail-content"></div>
             </div>
 
-            <div id="general-norms-view" class="hidden animate-fade-in">
+            <!-- VIEW NORMAS GERAIS -->
+            <div id="general-norms-view" class="hidden">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                    <h2 class="text-2xl font-extrabold text-[#003366] flex items-center gap-3">
-                        <i class="fas fa-scale-balanced"></i> Padrão Normativo Genérico
+                    <h2 class="text-2xl font-bold text-[#003366] flex items-center gap-2">
+                        <i class="fas fa-scale-balanced"></i> Normas Gerais de Publicação
                     </h2>
-                    <button onclick="window.hideGeneralNorms()" class="px-5 py-2.5 font-medium transition-all flex items-center gap-2">
+                    <button onclick="window.hideGeneralNorms()" class="text-slate-600 hover:text-slate-900 flex items-center gap-1">
                         <i class="fas fa-arrow-left"></i> Voltar
                     </button>
                 </div>
                 <div id="general-norms-content" class="grid grid-cols-1 md:grid-cols-2 gap-7"></div>
             </div>
 
-            <div id="guide-view" class="hidden animate-fade-in">
+            <!-- VIEW GUIAS DE REDAÇÃO -->
+            <div id="guide-view" class="hidden">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                    <h2 class="text-2xl font-extrabold text-[#003366] flex items-center gap-3">
+                    <h2 class="text-2xl font-bold text-[#003366] flex items-center gap-2">
                         <i class="fas fa-compass"></i> Guias de Redação Acadêmica
                     </h2>
-                    <button onclick="window.hideGuideView()" class="px-5 py-2.5 font-medium transition-all flex items-center gap-2">
+                    <button onclick="window.hideGuideView()" class="text-slate-600 hover:text-slate-900 flex items-center gap-1">
                         <i class="fas fa-arrow-left"></i> Voltar
                     </button>
                 </div>
@@ -354,90 +268,153 @@
             </div>
         </main>
 
-        <footer class="mt-auto border-t border-slate-200 bg-white py-8 px-4 text-center">
+        <!-- Rodapé -->
+        <footer class="border-t border-slate-200 bg-white py-6 px-4 text-center">
             <div class="max-w-7xl mx-auto">
-                <div class="flex items-center justify-center gap-3 mb-3">
-                    <img src="imagem/icone_submetnev.png" alt="SubmetNEV" class="h-6 w-auto grayscale opacity-60">
-                    <p class="text-slate-500 text-xs font-medium uppercase tracking-widest">
+                <div class="flex items-center justify-center gap-3 mb-2">
+                    <img src="imagem/icone_submetnev.png" alt="SubmetNEV" class="h-5 w-auto opacity-60">
+                    <p class="text-slate-500 text-xs font-medium uppercase tracking-wider">
                         © 2026 · Núcleo de Estudos da Violência · Universidade de São Paulo
                     </p>
                 </div>
-                <p class="text-slate-400 text-[11px] max-w-2xl mx-auto leading-relaxed">
-                    As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista para versões atualizadas.<br>
-                    <button onclick="window.openTermsModal()" class="text-[#003366] font-semibold hover:underline mt-2 inline-flex items-center gap-1">
-                        <i class="fas fa-file-contract text-xs"></i>
-                        Termos de Uso, Responsabilidade e Política de Privacidade
+                <p class="text-slate-400 text-[11px] max-w-2xl mx-auto">
+                    As normas estão sujeitas a alterações. Consulte sempre o site oficial da revista.<br>
+                    <button onclick="window.openTermsModal()" class="text-[#003366] hover:underline mt-2 inline-flex items-center gap-1">
+                        <i class="fas fa-file-contract"></i> Termos de Uso e Privacidade
                     </button>
                 </p>
             </div>
         </footer>
     </div>
 
-    <div id="terms-modal" class="modal-overlay" aria-hidden="true">
-        <div class="modal-content p-8" role="dialog" aria-modal="true">
-            <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h3 class="text-xl font-bold text-[#003366] flex items-center gap-2">
-                    <i class="fas fa-gavel"></i> Termos de Uso e Compromisso do Pesquisador
-                </h3>
-                <button onclick="window.closeTermsModal()" class="text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
+   <!-- MODAL DE TERMOS (COMPLETO) -->
+<div id="terms-modal" class="modal-overlay">
+    <div class="modal-content p-8" role="dialog" aria-modal="true">
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+            <h3 class="text-xl font-bold text-[#003366] flex items-center gap-2">
+                <i class="fas fa-gavel"></i> Termos de Uso e Compromisso do Pesquisador
+            </h3>
+            <button onclick="window.closeTermsModal()" class="text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
+        </div>
+        <div class="space-y-5 text-slate-600 text-sm leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+            <div class="bg-slate-50 p-4 rounded-lg border-l-4 border-[#003366]">
+                <p><strong class="text-[#003366]">1. Finalidade Acadêmica e Institucional:</strong> O SubmetNEV é uma ferramenta desenvolvida pelo Núcleo de Estudos da Violência da Universidade de São Paulo (NEV/USP) com o objetivo de apoiar a comunidade científica no processo de submissão de artigos. As informações disponibilizadas são consolidadas a partir de diretrizes públicas e fontes oficiais dos periódicos, não substituindo a consulta direta aos sites oficiais.</p>
             </div>
-            <div class="space-y-5 text-slate-600 text-sm leading-relaxed">
-                <div class="bg-slate-50 p-4 rounded-lg border-l-4 border-[#003366]">
-                    <p><strong class="text-[#003366]">1. Finalidade Acadêmica e Institucional:</strong> O SubmetNEV é uma ferramenta desenvolvida pelo Núcleo de Estudos da Violência da Universidade de São Paulo (NEV/USP) com o objetivo de apoiar a comunidade científica no processo de submissão de artigos. As informações disponibilizadas são consolidadas a partir de diretrizes públicas e fontes oficiais dos periódicos.</p>
-                </div>
-                
-                <div>
-                    <p><strong class="text-[#003366]">2. Responsabilidade do Usuário e Verificação Oficial:</strong> O pesquisador é integralmente responsável pela conferência e validação das normas de submissão no website oficial do periódico antes da submissão final. O NEV/USP não se responsabiliza por eventuais discrepâncias, atualizações ou decisões editoriais dos periódicos indexados.</p>
-                </div>
-                
-                <div>
-                    <p><strong class="text-[#003366]">3. Propriedade Intelectual e Atribuição:</strong> O design, código-fonte e estrutura do SubmetNEV são de propriedade exclusiva do NEV/USP, protegidos por legislação de direitos autorais. É vedada a reprodução não autorizada ou o uso comercial sem consentimento expresso da instituição.</p>
-                </div>
+            
+            <div>
+                <p><strong class="text-[#003366]">2. Responsabilidade do Usuário e Verificação Oficial:</strong> O pesquisador é integralmente responsável pela conferência e validação das normas de submissão no website oficial do periódico antes da submissão final. O NEV/USP não se responsabiliza por eventuais discrepâncias, atualizações, erros de digitação, ou decisões editoriais dos periódicos indexados. O usuário assume total responsabilidade pelo uso das informações aqui disponibilizadas.</p>
+            </div>
+            
+            <div>
+                <p><strong class="text-[#003366]">3. Propriedade Intelectual e Atribuição:</strong> O design, código-fonte, estrutura e conteúdo original do SubmetNEV são de propriedade exclusiva do NEV/USP, protegidos por legislação de direitos autorais (Lei 9.610/98). É vedada a reprodução não autorizada, distribuição, modificação ou uso comercial sem consentimento expresso por escrito da instituição. É permitida a citação, desde que atribuída a fonte: "SubmetNEV - Núcleo de Estudos da Violência da Universidade de São Paulo".</p>
+            </div>
 
-                <div>
-                    <p><strong class="text-[#003366]">4. Privacidade e Dados de Navegação:</strong> Este sistema não coleta dados pessoais sem consentimento explícito. Informações de navegação são utilizadas exclusivamente para melhoria da experiência do usuário e análises estatísticas internas, em conformidade com a LGPD.</p>
-                </div>
+            <div>
+                <p><strong class="text-[#003366]">4. Privacidade e Dados de Navegação (LGPD):</strong> Este sistema não coleta dados pessoais sem consentimento explícito. Informações de navegação (cookies, endereço IP, páginas acessadas) são utilizadas exclusivamente para melhoria da experiência do usuário, análises estatísticas internas e segurança, em conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/18). O usuário pode solicitar a qualquer momento a exclusão de eventuais dados armazenados entrando em contato com a administração do sistema.</p>
             </div>
-            <div class="mt-8 flex justify-end gap-3">
-                <button onclick="window.closeTermsModal()" class="border border-slate-300 text-slate-700 px-6 py-2 rounded-md font-medium hover:bg-slate-50 transition-colors">
-                    Fechar
-                </button>
-                <button onclick="window.closeTermsModal()" class="bg-[#003366] text-white px-8 py-2 rounded-md font-semibold hover:bg-blue-900 transition-colors shadow-sm">
-                    Estou Ciente e Concordo
-                </button>
+
+            <div>
+                <p><strong class="text-[#003366]">5. Limitação de Responsabilidade:</strong> O NEV/USP não se responsabiliza por danos diretos, indiretos, incidentais ou consequenciais decorrentes do uso ou da impossibilidade de uso do sistema, incluindo, mas não se limitando a, atrasos na submissão, rejeição de artigos por inadequação às normas, ou perda de dados. O sistema é fornecido "no estado em que se encontra", sem garantias de disponibilidade contínua ou ausência de erros.</p>
+            </div>
+
+            <div>
+                <p><strong class="text-[#003366]">6. Direitos dos Titulares (LGPD):</strong> Nos termos da LGPD, o usuário tem direito a:
+                    <ul class="list-disc pl-6 mt-2 space-y-1">
+                        <li>Confirmação da existência de tratamento de dados;</li>
+                        <li>Acesso aos dados;</li>
+                        <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
+                        <li>Anonimização, bloqueio ou eliminação de dados desnecessários;</li>
+                        <li>Portabilidade dos dados a outro fornecedor de serviço;</li>
+                        <li>Eliminação dos dados tratados com consentimento;</li>
+                        <li>Informação sobre compartilhamento de dados;</li>
+                        <li>Revogação do consentimento.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div>
+                <p><strong class="text-[#003366]">7. Alterações nos Termos:</strong> O NEV/USP reserva-se o direito de modificar estes termos a qualquer momento, sendo as alterações publicadas nesta mesma página. O uso continuado do sistema após tais alterações constitui aceitação dos novos termos. Recomenda-se a revisão periódica desta seção.</p>
+            </div>
+
+            <div>
+                <p><strong class="text-[#003366]">8. Foro e Legislação Aplicável:</strong> Fica eleito o Foro da Justiça Federal, Seção Judiciária de São Paulo, Subseção de São Paulo, com exclusão de qualquer outro, por mais privilegiado que seja, para dirimir quaisquer controvérsias decorrentes destes termos, aplicando-se a legislação brasileira.</p>
+            </div>
+
+            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 mt-4">
+                <p class="text-xs text-amber-800"><i class="fas fa-info-circle mr-1"></i> Ao utilizar o SubmetNEV, o pesquisador declara ter lido, compreendido e concordado integralmente com estes Termos de Uso e com a Política de Privacidade aqui descrita.</p>
+            </div>
+        </div>
+        <div class="mt-8 flex justify-end gap-3">
+            <button onclick="window.closeTermsModal()" class="border border-slate-300 text-slate-700 px-6 py-2 rounded-md font-medium hover:bg-slate-50 transition-colors">
+                Fechar
+            </button>
+            <button onclick="window.closeTermsModal()" class="bg-[#003366] text-white px-8 py-2 rounded-md font-semibold hover:bg-blue-900 transition-colors shadow-sm">
+                Estou Ciente e Concordo
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- MODAL ADMIN (ÁREA RESTRITA) -->
+    <div id="admin-modal" class="modal-overlay">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-[#003366]">Área Restrita</h3>
+                <button onclick="window.closeAdminModal()" class="text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
+            </div>
+            <div id="admin-login" class="space-y-4">
+                <p class="text-sm text-slate-600">Digite a senha para acessar o painel de edição.</p>
+                <input type="password" id="admin-password" placeholder="Senha" class="w-full p-2 border rounded-lg">
+                <button onclick="window.adminLogin()" class="bg-[#003366] text-white px-4 py-2 rounded-lg w-full">Entrar</button>
+            </div>
+            <div id="admin-panel" class="hidden space-y-4">
+                <p class="text-sm text-green-600">Login efetuado com sucesso.</p>
+                <div class="flex gap-2">
+                    <button onclick="window.exportJSON()" class="bg-green-600 text-white px-3 py-1 rounded text-sm"><i class="fas fa-download"></i> Exportar JSON</button>
+                    <button onclick="window.resetToOriginal()" class="bg-red-600 text-white px-3 py-1 rounded text-sm"><i class="fas fa-undo"></i> Restaurar original</button>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Revistas</h4>
+                    <select id="admin-revista-select" class="w-full p-2 border rounded-lg mb-2">
+                        <option value="">-- Selecione uma revista para editar --</option>
+                    </select>
+                    <button onclick="window.addNewRevista()" class="bg-blue-600 text-white px-3 py-1 rounded text-sm"><i class="fas fa-plus"></i> Nova Revista</button>
+                </div>
+                <div id="admin-editor" class="hidden space-y-3 border-t pt-4">
+                    <!-- Campos serão preenchidos dinamicamente -->
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- TOAST CONTAINER -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-3"></div>
 
+    <!-- Script principal -->
     <script src="script.js"></script>
     <script>
-        window.openTermsModal = function() {
-            const modal = document.getElementById('terms-modal');
-            if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
+        // Funções globais para modais
+        window.openTermsModal = () => document.getElementById('terms-modal').classList.add('show');
+        window.closeTermsModal = () => document.getElementById('terms-modal').classList.remove('show');
+        window.openAdminModal = () => document.getElementById('admin-modal').classList.add('show');
+        window.closeAdminModal = () => {
+            document.getElementById('admin-modal').classList.remove('show');
+            document.getElementById('admin-login').classList.remove('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
         };
-        window.closeTermsModal = function() {
-            const modal = document.getElementById('terms-modal');
-            if (modal) { modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true'); }
-        };
-        document.addEventListener('click', (e) => { if (e.target.classList.contains('modal-overlay')) window.closeTermsModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') window.closeTermsModal(); });
-
-        window.goToHome = window.goToHome || function() {
-            ['detail-view', 'general-norms-view', 'guide-view'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
-            document.getElementById('main-view')?.classList.remove('hidden');
-            if (window.state) {
-                window.state.filtroQualis = 'Todos';
-                window.state.searchTerm = '';
-                const si = document.getElementById('search-input'); if (si) si.value = '';
-                if (typeof window.renderQualisFilters === 'function') window.renderQualisFilters();
-                if (typeof window.renderMainView === 'function') window.renderMainView();
+        // Fechar modal ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                window.closeTermsModal();
+                window.closeAdminModal();
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                window.closeTermsModal();
+                window.closeAdminModal();
+            }
+        });
     </script>
 </body>
 </html>

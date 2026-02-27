@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste</title>
+</head>
+<body>
+    <h1>Teste de conexão</h1>
+    <div id="status">Verificando...</div>
+    <script>
+        fetch('data.json?t=' + Date.now())
+            .then(response => {
+                document.getElementById('status').innerHTML = '✅ JSON carregado: ' + response.status;
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('status').innerHTML += '<br>✅ Revistas: ' + data.revistas.length;
+            })
+            .catch(err => {
+                document.getElementById('status').innerHTML = '❌ Erro: ' + err.message;
+            });
+    </script>
+</body>
+</html>
